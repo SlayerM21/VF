@@ -12,6 +12,8 @@ The complete revised R Markdown and supporting records are available individuall
 
 Global GreenFeed contains one Year-random model for CH4 and one for CO2. The separate fixed-year sensitivity analyses are absent from the current workflow and model list.
 
+Unique two-scale outputs use `Chapter_2_Results/05_Two_Scale_Analysis_maps/`, with numbered subfolders for tables, models, figures, maps, and spatial datasets.
+
 Period models use treatment × stocking rate × period fixed effects with random Year and physical Pasture intercepts. The final-weight ANCOVA also includes initial body weight. The protected HMM/GPS specifications are preserved.
 
 All 206 R chunks parsed, and targeted synthetic checks passed. Original research input datasets are not included; study-data model execution, research exports, and a full knit remain unverified. See the report for dependencies, input paths, remaining model limitations, and the precise validation scope.

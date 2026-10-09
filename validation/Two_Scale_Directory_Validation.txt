@@ -1,0 +1,39 @@
+User-requested two-scale output-directory relocation
+
+New root: Chapter_2_Results/05_Two_Scale_Analysis_maps
+Rmd SHA256: 81861040fb67be5d24c36c34205e3d941c0d6e581a6d6b55b780fcc64b5e17b2
+
+Observed output from successful targeted execution:
+PASS: delivered setup uses the requested top-level folder and retains all five numbered subfolders.
+PASS: disabled table, figure and map-directory writers create no result folders or files.
+PASS: actual two-scale CSV writer round-trips two fabricated rows in new 01_Tables.
+PASS: actual two-scale figure writer creates a nonempty fabricated PNG in new 03_Figures.
+PASS: verified map writer saves the fabricated RGP PNG in new 04_Maps; old nested root is not created.
+PASS: actual RGP inventory/manifest writers use new 01_Tables and valid paths relative to the new root.
+PASS: actual final master manifest discovers all five relocated test outputs without old-path entries.
+NOTE: fabricated files on Linux only; study models/GIS/full knit and actual Windows writes were not executed.
+PNG created: afri-map-ed7f53338c06.png (1,401 bytes)
+
+Current full parsing:
+Input: /workspace/afri_revision/deliverables/AFRI_CHAPTER_2_Optimized.Rmd
+R: R version 4.5.0 (2025-04-11)
+R chunks: 206
+Chunks parsed: 206/206
+Duplicate explicit labels: 
+YAML: PASS
+knitr purl: PASS
+Extracted R parse: PASS
+Dataset analyses and full knit: NOT RUN (source datasets unavailable).
+
+Static source inspection: 205/206 chunk bodies are unchanged. The only
+changed body replaces the two-scale root assignment. All scientific
+processing/model/diagnostic expressions and protected chunks are identical.
+All seven two-scale export-audit destinations use the new root; 197 rows
+remain. All five numbered output subfolders are retained.
+
+Path-length comparison of the supplied Windows example: 268 to 243
+characters, with parent directory 229 to 204. This is a static path check,
+not a successful export on the user Windows computer.
+
+Synthetic CSV/PNG/manifest checks were executed on Linux. Study datasets,
+statistical models, GIS files and full document knitting were not executed.

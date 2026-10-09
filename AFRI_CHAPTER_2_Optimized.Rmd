@@ -75,12 +75,18 @@ Chapter_2_Results/
 │   ├── 02_Model_Results/
 │   ├── 03_Figures/
 │   ├── 04_Maps/                  # behavior, area, and integrated metric maps
-│   ├── 05_Spatial_Data/
-│   └── Two_Scale_Analysis/       # distinct conditional/two-scale questions
+│   └── 05_Spatial_Data/
 ├── 02_Grazing_BW_AFRI/
 ├── 03_Grazing_GreenFeed_AFRI/
+├── 05_Two_Scale_Analysis_maps/   # distinct conditional/two-scale questions
 └── 06_Statistical_Analysis/
 ```
+
+The user-requested two-scale root is a sibling of the behavior/spatial, BW,
+GreenFeed, and statistical folders. It retains unique two-scale tables, model
+results, figures, maps, and spatial datasets in their existing numbered
+subfolders. Behavior, active-area, and integrated metric maps remain under
+`01_Grazing_Behavior_Spatial_Aera/04_Maps`.
 
 Subdirectories are created by their actual output writers; existing obsolete
 folders are left untouched. See the accompanying audit for files, ownership,
@@ -14889,8 +14895,7 @@ conditionally; they are not independent treatment-level replication.
 
 
 ```{r two-scale-animal-audit, message=FALSE, warning=FALSE}
-analysis_out <- file.path(master_output_root, "01_Grazing_Behavior_Spatial_Aera",
-                          "Two_Scale_Analysis")
+analysis_out <- file.path(master_output_root, "05_Two_Scale_Analysis_maps")
 two_scale_dirs <- list(
   tables = file.path(analysis_out, "01_Tables"),
   models = file.path(analysis_out, "02_Model_Results"),

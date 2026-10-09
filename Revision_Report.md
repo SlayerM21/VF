@@ -1,6 +1,6 @@
 # AFRI R Markdown revision report
 
-The delivery contains one complete document, `AFRI_CHAPTER_2_Optimized.Rmd`, with all runtime helpers embedded. It replaces the uploaded 33,602-line document with a 21,721-line workflow and retains 50 response specifications in the final statistical reporting layer. A response specification can reuse an earlier model; it does not imply another fitted model. No scientific results were invented, and the uploaded file was left unchanged.
+The delivery contains one complete document, `AFRI_CHAPTER_2_Optimized.Rmd`, with all runtime helpers embedded. It replaces the uploaded 33,602-line document with a 21,726-line workflow and retains 50 response specifications in the final statistical reporting layer. A response specification can reuse an earlier model; it does not imply another fitted model. No scientific results were invented, and the uploaded file was left unchanged.
 
 The current requested-model revision passed actual R parsing and targeted synthetic execution. Current statistical, Global GreenFeed, two-scale, table/export and formula-audit checks passed; unchanged shared-helper checks are explicitly identified as prior evidence. **A full knit, study-data model execution, and study export generation remain unverified because the original HMM, BW, GreenFeed, and GIS inputs were not supplied.** The document deliberately reports unavailable models or inference instead of silently switching families or modifying the requested formulas after a singular fit.
 
@@ -88,7 +88,7 @@ Tables consume retained results rather than refitting or recomputing EMMs. They 
 
 ## Export organization
 
-Every old requested directory name and all obsolete framework identifiers were removed from the code. `AFRI_OUT` and the separate two-scale root are consolidated under the spatial package. `05_Requested_Revision_Final` is not created or referenced. Existing obsolete folders/files are not automatically deleted. Designated result files are refreshed only when exports are requested.
+Every old requested directory name and all obsolete framework identifiers were removed from the code. `AFRI_OUT` behavior/spatial outputs remain consolidated under the spatial package. At the user's request, unique two-scale outputs now use `05_Two_Scale_Analysis_maps` directly under `Chapter_2_Results`, as a sibling of the behavior/spatial, BW, GreenFeed, and statistical folders. Its tables, model results, figures, maps, and spatial datasets retain their numbered subfolders. Behavior, active-area, and integrated metric maps remain in `01_Grazing_Behavior_Spatial_Aera/04_Maps`; integrated datasets remain in the spatial `Integrated_Analysis/01_Tables` folder. `05_Requested_Revision_Final` is not created or referenced. Existing obsolete folders/files are not automatically deleted. Designated result files are refreshed only when exports are requested.
 
 A final integrated writer now retains the four complete BW/productivity datasets, the descriptive behavior-period dataset, and six unique assignment/availability/map-QC tables. These had been computed without a complete final data-export owner. Whole-season daily-rate QC is kept in the statistical workbook rather than duplicated as CSV.
 
@@ -117,12 +117,6 @@ Chapter_2_Results/
 │   │       ├── 02_CH4_Three_Grids/             # three PNGs
 │   │       └── 03_CO2_Three_Grids/             # three PNGs
 │   ├── 05_Spatial_Data/                 # HMM/base/grid GeoPackages
-│   ├── Two_Scale_Analysis/
-│   │   ├── 01_Tables/                   # coverage/endpoints/GPS/inference/QC
-│   │   ├── 02_Model_Results/            # unique conditional/sensitivity RDS
-│   │   ├── 03_Figures/                  # coverage + Diagnostics/
-│   │   ├── 04_Maps/RGP_two_active_area_grid_maps/
-│   │   └── 05_Spatial_Data/Whole_season_unique_active_grid.gpkg
 │   └── Integrated_Analysis/01_Tables/   # eleven unique final dataset/QC CSVs
 ├── 02_Grazing_BW_AFRI/
 │   ├── 01_Tables/
@@ -138,6 +132,12 @@ Chapter_2_Results/
 │   ├── 04_Maps/                         # final CH4/CO2 TIFFs
 │   ├── 05_Spatial_Data/GreenFeed_Gas_Per_Active_Hectare.gpkg
 │   └── 06_Logs/GreenFeed_Export_Audit.csv
+├── 05_Two_Scale_Analysis_maps/
+│   ├── 01_Tables/                       # coverage/endpoints/GPS/inference/QC
+│   ├── 02_Model_Results/                # unique conditional/sensitivity RDS
+│   ├── 03_Figures/                      # coverage + Diagnostics/
+│   ├── 04_Maps/RGP_two_active_area_grid_maps/
+│   └── 05_Spatial_Data/Whole_season_unique_active_grid.gpkg
 └── 06_Statistical_Analysis/
     ├── 01_Tables/AFRI_Statistical_Results.xlsx
     ├── 02_Model_Results/Retained_Gaussian_LMMs.rds
@@ -158,7 +158,7 @@ The full 197-row CSV gives each source object and destination. `Preserved`, `Con
 | BW 1–4 | Cleaning, splines, growth, whole-window ADG | `BW_daily`, `animal_spline_models`, `smooth_adg_model` | BW standard folders | Preserved / Consolidated |
 | BW 5–6 | Production and three matched-area LMMs | `period_production_sf`, `pasture_use_models` | BW standard folders | Corrected to requested Year/Pasture grouping |
 | GreenFeed 1–4 | Unique visits, daily/Dressler/Global means, two Year/Pasture primary models | `visit_records_unique`, `dressler_animal_system`, `gf_rotation_models` | GreenFeed standard folders | Consolidated / Corrected |
-| Two-scale 4–8 | Coverage, endpoint ANCOVA, qualifying gases, percent use and distinct sensitivities | `manual_endpoint_summary`, `conditional_models`, `productivity_models` | spatial `Two_Scale_Analysis` | Preserved / Corrected |
+| Two-scale 4–8 | Coverage, endpoint ANCOVA, qualifying gases, percent use and distinct sensitivities | `manual_endpoint_summary`, `conditional_models`, `productivity_models` | `05_Two_Scale_Analysis_maps/{01_Tables,02_Model_Results,03_Figures,04_Maps,05_Spatial_Data}` | Preserved / Corrected |
 | Integrated 9.2–9.5 | Final animal/pasture datasets and unique map/availability QC | `shrunk_bw_*`, `period_level_grazing_productivity`, `whole_season_grazing_productivity` | spatial `Integrated_Analysis/01_Tables` | Corrected |
 | Statistical 9.7–9.12 | 50 response views, authoritative fits, diagnostics and design audit | `analysis_fits` and retained earlier models | owned archive/diagnostics and statistical workbook | Consolidated / Corrected |
 | Publication 9.12–9.13 | Five remaining manuscript table families and numerical/QC sheets | `publication_table_objects`, retained inference objects | statistical workbook | Consolidated |
@@ -172,6 +172,7 @@ The full 197-row CSV gives each source object and destination. `Preserved`, `Con
 | Full model catalog formula audit | Passed 66 formula checks | 62 full formulas plus four conditional alternatives have only Year/Pasture random intercepts, required fixed interactions, random Year, and the ANCOVA IBW covariate. This is static formula inspection. |
 | R Markdown YAML and chunk labels | Passed | 206 uniquely labeled R chunks; valid YAML. |
 | Actual R parsing | Passed | 206/206 chunks; knitr purl and complete extracted-R parsing. |
+| User-requested two-scale directory relocation | Seven targeted runtime checks and static audit passed | New root and five subfolders; disabled exports write nothing; fabricated CSV/figure/verified-map exports and RGP/final manifests use the new paths. Of 206 chunk bodies, 205 are unchanged and one changes only the root assignment. Checked on Linux; study GIS/data, full knit and actual Windows writes remain unverified. |
 | GreenFeed select masking correction | Nine targeted checks passed | Actual multcomp/MASS package-order conflict and both prior errors reproduced; corrected 15-row schedule/date classifier and 30-row fabricated reporting table preserved. Delivered setup alias also restores both previous interactive calls. Namespace lookup only; protected models unchanged. |
 | Protected model argument comparison | Passed | All four reference formula/data/REML call arguments identical; 33/46 protected chunks text-identical. |
 | Installed-package namespace API audit | Passed for 142 uses | Zero unavailable-function failures among checked APIs; 32 uses could not be checked because their packages were absent. |

@@ -16,12 +16,6 @@ Chapter_2_Results/
 │   │       ├── 02_CH4_Three_Grids/             # three PNGs
 │   │       └── 03_CO2_Three_Grids/             # three PNGs
 │   ├── 05_Spatial_Data/                 # HMM/base/grid GeoPackages
-│   ├── Two_Scale_Analysis/
-│   │   ├── 01_Tables/                   # coverage/endpoints/GPS/inference/QC
-│   │   ├── 02_Model_Results/            # unique conditional/sensitivity RDS
-│   │   ├── 03_Figures/                  # coverage + Diagnostics/
-│   │   ├── 04_Maps/RGP_two_active_area_grid_maps/
-│   │   └── 05_Spatial_Data/Whole_season_unique_active_grid.gpkg
 │   └── Integrated_Analysis/01_Tables/   # eleven unique final dataset/QC CSVs
 ├── 02_Grazing_BW_AFRI/
 │   ├── 01_Tables/
@@ -37,6 +31,12 @@ Chapter_2_Results/
 │   ├── 04_Maps/                         # final CH4/CO2 TIFFs
 │   ├── 05_Spatial_Data/GreenFeed_Gas_Per_Active_Hectare.gpkg
 │   └── 06_Logs/GreenFeed_Export_Audit.csv
+├── 05_Two_Scale_Analysis_maps/
+│   ├── 01_Tables/                       # coverage/endpoints/GPS/inference/QC
+│   ├── 02_Model_Results/                # unique conditional/sensitivity RDS
+│   ├── 03_Figures/                      # coverage + Diagnostics/
+│   ├── 04_Maps/RGP_two_active_area_grid_maps/
+│   └── 05_Spatial_Data/Whole_season_unique_active_grid.gpkg
 └── 06_Statistical_Analysis/
     ├── 01_Tables/AFRI_Statistical_Results.xlsx
     ├── 02_Model_Results/Retained_Gaussian_LMMs.rds

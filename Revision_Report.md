@@ -1,14 +1,14 @@
 # AFRI R Markdown revision report
 
-The delivery contains one complete document, `AFRI_CHAPTER_2_Optimized.Rmd`, with all runtime helpers embedded. It replaces the uploaded 33,602-line document with a 21,718-line workflow and retains 50 response specifications in the final statistical reporting layer. A response specification can reuse an earlier model; it does not imply another fitted model. No scientific results were invented, and the uploaded file was left unchanged.
+The delivery contains one complete document, `AFRI_CHAPTER_2_Optimized.Rmd`, with all runtime helpers embedded. It replaces the uploaded 33,602-line document with a 21,721-line workflow and retains 50 response specifications in the final statistical reporting layer. A response specification can reuse an earlier model; it does not imply another fitted model. No scientific results were invented, and the uploaded file was left unchanged.
 
 The current requested-model revision passed actual R parsing and targeted synthetic execution. Current statistical, Global GreenFeed, two-scale, table/export and formula-audit checks passed; unchanged shared-helper checks are explicitly identified as prior evidence. **A full knit, study-data model execution, and study export generation remain unverified because the original HMM, BW, GreenFeed, and GIS inputs were not supplied.** The document deliberately reports unavailable models or inference instead of silently switching families or modifying the requested formulas after a singular fit.
 
 ## GreenFeed select masking correction
 
-The protected setup attaches `multcomp` after `dplyr`; `multcomp` attaches MASS, whose `select(obj)` can mask `dplyr::select()`. Two GreenFeed calls were left unqualified: the rotation schedule column selection and the post-hoc grouping-letter selection in `gf_rotation_reporting_table()`. Both now explicitly use `dplyr::select()`. Those are the only two Rmd changes in this correction; all scientific schedules, transformations, model specifications and export expressions otherwise remain identical.
+The protected setup attaches `multcomp` after `dplyr`; `multcomp` attaches MASS, whose `select(obj)` can mask `dplyr::select()`. Two GreenFeed calls were left unqualified: the rotation schedule column selection and the post-hoc grouping-letter selection in `gf_rotation_reporting_table()`. Both now explicitly use `dplyr::select()`. The setup chunk also binds `select <- dplyr::select` after all package attachments, so interactive unqualified calls resolve correctly. These corrections affect function lookup only; all scientific schedules, transformations, model specifications and export expressions otherwise remain identical.
 
-The package-order conflict and the previous errors were reproduced in R. With MASS attached, the corrected schedule retained exactly the same 15 rows, dates, rotation assignments and factors, and the corrected reporting function retained all 30 fabricated EMM/count/P-value/letter rows. All 206 R chunks, YAML, knitr purl and extracted R parsed again. See `validation/Select_Masking_Fix_Validation.txt`. No study model, study export or full knit was executed for this correction.
+The package-order conflict and the previous errors were reproduced in R. With MASS attached, the corrected schedule retained exactly the same 15 rows, dates, rotation assignments and factors, and the corrected reporting function retained all 30 fabricated EMM/count/P-value/letter rows. Nine targeted checks passed, including the actual setup assignment and its ability to repair the previous interactive calls. All 206 R chunks, YAML, knitr purl and extracted R parsed again. All four protected model arguments and the 33/46 unchanged-chunk count were independently confirmed. See `validation/Select_Masking_Fix_Validation.txt`. No study model, study export or full knit was executed for this correction.
 
 ## User-requested model specification update
 
@@ -48,7 +48,7 @@ All four reference models retain identical formula, data, and REML arguments. Of
 1. Qualified reference fitting calls as `lme4::lmer()` and cached their existing `car::Anova()` results. The original reference Type III test method remains unchanged.
 2. Reused the already-created EMM grids in Table 1. Its model observations, estimates, tests, and scientific definitions remain tied to the original monthly fits; no replacement season-mean Table 1 models are fitted.
 3. Preserved Shapiro–Wilk tests where applicable and added an explicit not-run status for fewer than three, more than 5,000, or constant finite residuals. Existing reference Shapiro results are reused by the later diagnostic layer. The reference raw-data distribution checks are retained separately.
-4. Added parameter defaults for interactive setup and corrected the input-file absolute-path regex escaping.
+4. Added parameter defaults for interactive setup and corrected the input-file absolute-path regex escaping. The setup now also binds `select <- dplyr::select` after package attachments to prevent MASS masking in interactive calls; the affected GreenFeed calls retain explicit namespaces.
 5. Consolidated Table 1, long EMM/post-hoc results, and its omnibus sheets into `Table_1_Grazing_Behaviors.xlsx`; removed the duplicate CSV and second workbook copies. Removed duplicate PDF copies of the reference PNG EMM figures.
 6. Used the required spatial folder name from initial setup onward, removed unused folder creation, respected the export switch, and removed automatic deletion of malformed old exports.
 7. Made the reference PNG and GeoPackage writers prepare and verify temporary outputs before refreshing designated files. A failed PNG render, including a partial nonempty image, cannot replace an existing completed image.
@@ -172,7 +172,7 @@ The full 197-row CSV gives each source object and destination. `Preserved`, `Con
 | Full model catalog formula audit | Passed 66 formula checks | 62 full formulas plus four conditional alternatives have only Year/Pasture random intercepts, required fixed interactions, random Year, and the ANCOVA IBW covariate. This is static formula inspection. |
 | R Markdown YAML and chunk labels | Passed | 206 uniquely labeled R chunks; valid YAML. |
 | Actual R parsing | Passed | 206/206 chunks; knitr purl and complete extracted-R parsing. |
-| GreenFeed select masking correction | Six targeted checks passed | Actual multcomp/MASS package-order conflict reproduced; both prior errors reproduced; corrected 15-row schedule/date classifier and 30-row fabricated reporting table preserved under masking. Only two namespace qualifiers changed. |
+| GreenFeed select masking correction | Nine targeted checks passed | Actual multcomp/MASS package-order conflict and both prior errors reproduced; corrected 15-row schedule/date classifier and 30-row fabricated reporting table preserved. Delivered setup alias also restores both previous interactive calls. Namespace lookup only; protected models unchanged. |
 | Protected model argument comparison | Passed | All four reference formula/data/REML call arguments identical; 33/46 protected chunks text-identical. |
 | Installed-package namespace API audit | Passed for 142 uses | Zero unavailable-function failures among checked APIs; 32 uses could not be checked because their packages were absent. |
 | Shared runtime/model/diagnostic checks | Prior evidence retained | Unchanged shared helper, parameter and map-safety functions previously passed 29 synthetic checks; these records are distinct from current formula-specific tests. |
@@ -212,5 +212,11 @@ rmarkdown::render("AFRI_CHAPTER_2_Optimized.Rmd",
 `pbkrtest` and `ragg` are optional enhancements; their availability is checked. `DT` is optional and assignment-conflict reporting falls back to `knitr::kable()` if it is absent. System libraries may be required when installing spatial/graphics packages from source. The Rmd itself does not install packages or change the working directory.
 
 For individual chunks, run shared runtime/setup and the required upstream data chunks first. Unchanged question requests reuse their fitted objects. Start a fresh R session for this model-specification update. Pre-change models with extra random effects are rejected, and changed formula/data requests cannot silently reuse a stale registry. After deliberately changing inputs or model specifications again, start a fresh session.
+
+For an already-running session affected only by `select()` masking, run the following in the Console, then rerun the failed GreenFeed chunk. Existing calculated objects can be retained; the namespace fix does not require a new session.
+
+```r
+select <- dplyr::select
+```
 
 The two optional **animal-period two-scale** GreenFeed thresholds remain `null`. No prespecified rule was supplied. Threshold-dependent qualifying gas models are explicitly pending. This does **not** add a threshold to the Global pasture-period analysis; its existing valid-visit rules and aggregation remain. The separate Dressler whole-season 40-visit rule is preserved.

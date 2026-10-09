@@ -1,28 +1,35 @@
-GreenFeed select() namespace correction
+GreenFeed select() namespace correction and interactive setup binding
 
-Scope: two call-site namespace qualifiers only. Source dates, scientific
-transformations, model specifications and export expressions otherwise unchanged.
+Rmd SHA256: efc60507ed1dd89b9030b8fccdd86713ef09621f8dad9451c34c20a1dcf64990
 
-Executed with R 4.5.0, attaching dplyr before multcomp. multcomp attaches MASS;
-find("select") then resolves first to package:MASS.
+Scope: both GreenFeed selections explicitly use dplyr::select(). Setup also
+binds select <- dplyr::select after package attachments. The latest addition
+changes only this setup comment/binding; scientific expressions are unchanged.
 
-Observed output from the successful targeted R run:
+Observed output from the successful current targeted R run:
 PASS: actual setup dependency order reproduces MASS select masking.
 PASS: previous schedule call reproduces the reported unused-arguments error.
 PASS: corrected schedule executes with MASS attached and exactly preserves all 15 rows, dates, rotations, factors and assignments.
 PASS: date classifier is identical before/after the namespace fix.
 PASS: previous post-hoc letter selection reproduces the same masking failure.
 PASS: corrected reporting function executes with MASS attached and preserves all 30 synthetic rows, n, EMMs, SEs, P-values and letters.
+PASS: actual delivered setup assignment resolves select to dplyr with MASS attached.
+PASS: setup alias also repairs the old interactive schedule call without changing its data.
+PASS: setup alias also repairs the old reporting function in the current session.
 NOTE: schedule and fabricated reporting fixtures only; no study model, export or full knit was executed.
 
-Independent full-document parsing rerun:
+Current full-document parsing:
+Input: /workspace/afri_revision/deliverables/AFRI_CHAPTER_2_Optimized.Rmd
+R: R version 4.5.0 (2025-04-11)
 R chunks: 206
 Chunks parsed: 206/206
-Duplicate explicit labels: none
+Duplicate explicit labels: 
 YAML: PASS
 knitr purl: PASS
 Extracted R parse: PASS
+Dataset analyses and full knit: NOT RUN (source datasets unavailable).
 
-Static comparison confirmed that the complete Rmd differs from the previous
-published Rmd at only the two corrected select() calls, and that no unqualified
-select() calls remain. Study-data execution remains unverified.
+Independent protected-reference inspection: 4/4 formula/data/REML call
+arguments identical to the original; 33/46 protected chunks text-identical.
+The setup chunk was already modified before this compatibility addition.
+Study models, study exports, and full knitting remain unverified.

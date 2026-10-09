@@ -373,6 +373,9 @@ library(openxlsx)
 # Report generation
 library(knitr)
 
+# Keep interactive select() calls on dplyr when model packages attach MASS.
+select <- dplyr::select
+
 knitr::opts_chunk$set(
   echo = TRUE,
   message = FALSE,

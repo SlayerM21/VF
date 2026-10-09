@@ -1,8 +1,8 @@
 # AFRI R Markdown revision report
 
-The delivery contains one complete document, `AFRI_CHAPTER_2_Optimized.Rmd`, with all runtime helpers embedded. It replaces the uploaded 33,602-line document with a 21,726-line workflow and retains 50 response specifications in the final statistical reporting layer. A response specification can reuse an earlier model; it does not imply another fitted model. No scientific results were invented, and the uploaded file was left unchanged.
+The delivery contains one complete document, `AFRI_CHAPTER_2_Optimized.Rmd`, with all runtime helpers embedded. It replaces the uploaded 33,602-line document with a 21,761-line workflow and retains 50 response specifications in the final statistical reporting layer. A response specification can reuse an earlier model; it does not imply another fitted model. No scientific results were invented, and the uploaded file was left unchanged.
 
-The current requested-model revision passed actual R parsing and targeted synthetic execution. Current statistical, Global GreenFeed, two-scale, table/export and formula-audit checks passed; unchanged shared-helper checks are explicitly identified as prior evidence. **A full knit, study-data model execution, and study export generation remain unverified because the original HMM, BW, GreenFeed, and GIS inputs were not supplied.** The document deliberately reports unavailable models or inference instead of silently switching families or modifying the requested formulas after a singular fit.
+The latest revision applies the requested additive-period specifications and passed actual R parsing, static formula audits, and targeted synthetic execution of the current models and reporting functions. Records from the preceding interaction-model revision are identified separately as historical evidence. **A full knit, study-data model execution, and study export generation remain unverified because the original HMM, BW, GreenFeed, and GIS inputs were not supplied.** The document deliberately reports unavailable models or inference instead of silently switching families or modifying the requested formulas after a singular fit.
 
 ## GreenFeed select masking correction
 
@@ -12,22 +12,24 @@ The package-order conflict and the previous errors were reproduced in R. With MA
 
 ## User-requested model specification update
 
-The latest instruction explicitly requests only Year and physical Pasture random intercepts. It supersedes the additional pasture-year and animal/steer random intercepts in the preceding revision. All repeated pasture-period, animal-period, and optional sampling-qualified GreenFeed questions now use the requested structure. Protected HMM/GPS baseline models and the observed final-weight ANCOVA keep their prior specifications.
+The latest instruction explicitly requests `TRT * SR + Period` for repeated responses and `TRT * SR + RotationPeriod` for Global GreenFeed, with only Year and physical Pasture random intercepts. It replaces the preceding revision's management-by-period interactions with an additive period main effect. All repeated pasture-period, animal-period, and optional sampling-qualified GreenFeed questions now use this structure. Protected HMM/GPS baseline models and the observed final-weight ANCOVA keep their prior specifications.
 
 | Code / scope | Requested formula |
 |---|---|
 | S — baseline | `response ~ TRT * SR + (1 | Year) + (1 | Pasture)` |
-| P — pasture-period | `response ~ TRT * SR * Period + (1 | Year) + (1 | Pasture)` |
-| A — animal-period | `response ~ TRT * SR * Period + (1 | Year) + (1 | Pasture)` |
-| F — Global GreenFeed | `response ~ TRT * SR * RotationPeriod + (1 | Year) + (1 | Pasture)` |
+| P — pasture-period | `response ~ TRT * SR + Period + (1 | Year) + (1 | Pasture)` |
+| A — animal-period | `response ~ TRT * SR + Period + (1 | Year) + (1 | Pasture)` |
+| F — Global GreenFeed | `response ~ TRT * SR + RotationPeriod + (1 | Year) + (1 | Pasture)` |
 | C — observed final-weight ANCOVA | `FBW ~ IBW + TRT * SR + (1 | Year) + (1 | Pasture_ID)` |
-| Q — sampling-qualified animal-period GreenFeed | `response ~ TRT * SR * Period + (1 | Year) + (1 | Pasture)` |
+| Q — sampling-qualified animal-period GreenFeed | `response ~ TRT * SR + Period + (1 | Year) + (1 | Pasture)` |
 
 `RGP`, `Period`, and `RotationPeriod` are the respective source names for grazing period. Global GreenFeed F uses the literal `RotationPeriod` and `Year` columns in the requested formula. `Pasture_ID` and `Pasture` identify physical pastures.
 
+`TRT * SR` includes Treatment, Stocking Rate, and their interaction. Period is added as a main effect: no Treatment × Period, Stocking Rate × Period, or Treatment × Stocking Rate × Period interaction remains. Each retained model therefore assumes the management differences are constant across periods. Main-effect period comparisons and adjusted period EMMs remain scientifically distinct outputs; no interaction P-values for removed terms are invented or reported. A complete TRT × SR × Period EMM prediction grid can still describe the adjusted combinations; that grid does not add interaction terms to the fitted formula.
+
 F now equals the Global primary Year-random question. The former fixed-year sensitivity is removed rather than refitted as a duplicate of the primary model. Both gases retain one primary model and reuse it for downstream tables and figures. The complete catalog therefore has 50 final reporting entries plus 12 source/conditional entries (62 records). A and Q share a formula structure with P, while their observation units and Q qualification rule remain distinct.
 
-This changes the covariance assumptions and can change estimates, SEs, degrees of freedom, and P-values; numerical equivalence to the preceding revision is not claimed. Animal and pasture-year identifiers remain available as linkage/QC metadata, but no separate random effects or residual correlation terms are fitted for those identifiers. Within-animal repeated-measure and pasture-year residual correlation beyond the shared Year/Pasture intercepts remains a limitation. The single-pasture-per-treatment-cell limitation and withholding of unsupported confirmatory inference remain in place.
+Removing management-by-period interactions changes the fixed-effect assumptions and can change estimates, SEs, degrees of freedom, and P-values; numerical equivalence to the preceding revision is not claimed. The previously requested Year/Pasture-only covariance structure remains. Animal and pasture-year identifiers remain available as linkage/QC metadata, but no separate random effects or residual correlation terms are fitted for those identifiers. Within-animal repeated-measure and pasture-year residual correlation beyond the shared Year/Pasture intercepts remains a limitation. The single-pasture-per-treatment-cell limitation and withholding of unsupported confirmatory inference remain in place.
 
 ## Files supplied
 
@@ -35,6 +37,7 @@ This changes the covariance assumptions and can change estimates, SEs, degrees o
 - `Analysis_Export_Audit.csv`: 197 detailed rows covering derived datasets, QC records, retained models, reporting views, figures, spatial outputs, and export ownership.
 - `Response_Model_Inventory.csv`: all 50 final reporting specifications, their data sources, scale, and observation unit.
 - `Complete_Response_Model_List.csv` and `.md`: all 62 reporting/source/conditional entries, with exact formulas, model-fitting/reporting datasets and model-reuse conditions.
+- `AFRI_Variables_Models_and_Datasets.docx`: Word version of the current variable/model/dataset catalog, with 62 model entries, six descriptive measure groups, and the current additive-period formulas. The Word document is included in `AFRI_Revision_Bundle.zip`.
 - `Expected_Output_Directory_Tree.txt`: standalone expected output tree.
 - `Revision_Metadata.json`: source/revision hashes, counts, and execution limitation.
 - `validation/`: parsing, protected-model preservation, package versions/availability, and synthetic-test evidence. These are validation records, not study results.
@@ -72,7 +75,7 @@ The former family-selection, repair/fallback, and competing final-model framewor
 
 A registry retains a fit per question and refuses conflicting formula/data reuse. Inference and diagnostics are cached. Later sections reuse reference behavior/DDT models, whole-window ADG, matched-grid active-area fits, equivalent Global gas means, and equivalent joined Dressler seasonal values. Reuse requires matching complete observation keys, response values, and relevant window provenance. Different endpoint subsets or aggregation weights are explicitly labeled sensitivity questions rather than silently merged. The three matched-grid area questions must use the retained BW source model: missing or failed source fits and unequal integrated rows are audited as unavailable, and cannot trigger competing replacement fits.
 
-All baseline and repeated models now use only the requested Year/Pasture random intercepts. P, A, and Q keep the Treatment × Stocking Rate × Period fixed-effect specification. The previous revision's separate pasture-year and animal-year random terms are removed consistently from BW area, Global gas, unique two-scale, and final statistical models. Whole-season models continue to use Year/Pasture. Identity columns are retained for matching observations, sample-size/design audits, and descriptive coverage checks.
+All baseline and repeated models use only the requested Year/Pasture random intercepts. P, A, and Q use Treatment × Stocking Rate plus an additive Period main effect; F uses the additive RotationPeriod alias. BW area, Global gas, unique two-scale, final statistical fits and conditional sensitivity formulas use this same fixed-effect structure for period questions. Whole-season models retain TRT × SR and Year/Pasture. Identity columns remain available for matching observations, sample-size/design audits, and descriptive coverage checks.
 
 Kenward–Roger is used for suitable REML fits when `pbkrtest` is available and the model has at most 3,000 observations. Satterthwaite is recorded otherwise, including preserved ML fits; the helper does not silently refit an ML model to obtain KR. Type III factor contrasts are set before new fits. Global GreenFeed F uses random Year and physical Pasture, and reuses the primary model; no separate fixed-year sensitivity remains.
 
@@ -84,7 +87,7 @@ Unique monthly, period, whole-window, calendar-season, raw-endpoint ANCOVA, perc
 
 Every retained Gaussian fit has applicable full-residual Shapiro–Wilk results/status, residual-versus-fitted and normal Q–Q plots, scale-location and grouped residual-SD review, fitted random variances, singularity, optimizer/convergence warnings, and dropped fixed-column metadata. Residual flags identify rows for review and do not delete them. No model is changed solely because its Shapiro P-value is significant or a variance reaches zero.
 
-Tables consume retained results rather than refitting or recomputing EMMs. They retain model-specific n, observation and experimental-unit information, six TRT × SR EMM ± SE cells, model-based TRT/SR/interaction P-values, and appropriate scoped letters. Period tables also retain relevant period tests. Missing results use a dash and are audited. The publication layer uses one workbook for five remaining table families and numerical/model/design/diagnostic/QC records; it does not duplicate Table 1.
+Tables consume retained results rather than refitting or recomputing EMMs. They retain model-specific n, observation and experimental-unit information, six TRT × SR EMM ± SE cells, model-based TRT/SR/TRT × SR P-values, and appropriate scoped letters. Period tables retain the additive Period main-effect test and its adjusted EMMs where needed; removed management-by-period interaction tests are omitted. Missing results use a dash and are audited. The publication layer uses one workbook for five remaining table families and numerical/model/design/diagnostic/QC records; it does not duplicate Table 1.
 
 ## Export organization
 
@@ -168,27 +171,31 @@ The full 197-row CSV gives each source object and destination. `Preserved`, `Con
 
 | Check | Outcome | Scope / limitation |
 |---|---|---|
-| Static code and cross-section audit | Passed targeted checks | Requested formulas applied consistently; obsolete names/framework and former fixed-year fit/export objects absent. Source-data equality is enforced at runtime, not presumed. |
-| Full model catalog formula audit | Passed 66 formula checks | 62 full formulas plus four conditional alternatives have only Year/Pasture random intercepts, required fixed interactions, random Year, and the ANCOVA IBW covariate. This is static formula inspection. |
-| R Markdown YAML and chunk labels | Passed | 206 uniquely labeled R chunks; valid YAML. |
-| Actual R parsing | Passed | 206/206 chunks; knitr purl and complete extracted-R parsing. |
-| User-requested two-scale directory relocation | Seven targeted runtime checks and static audit passed | New root and five subfolders; disabled exports write nothing; fabricated CSV/figure/verified-map exports and RGP/final manifests use the new paths. Of 206 chunk bodies, 205 are unchanged and one changes only the root assignment. Checked on Linux; study GIS/data, full knit and actual Windows writes remain unverified. |
-| GreenFeed select masking correction | Nine targeted checks passed | Actual multcomp/MASS package-order conflict and both prior errors reproduced; corrected 15-row schedule/date classifier and 30-row fabricated reporting table preserved. Delivered setup alias also restores both previous interactive calls. Namespace lookup only; protected models unchanged. |
+| Static code and cross-section audit | Passed current additive-revision checks | Formula terms, retained source provenance and export organization reviewed; source-data equality remains enforced at runtime, not presumed. |
+| Full model catalog formula audit | 66/66 current static formula checks passed | All 62 full formulas and four conditional alternatives retain TRT × SR, additive Period/source alias where applicable, only Year/Pasture random intercepts and ANCOVA IBW, with no management-by-period interactions. Evidence: `validation/Additive_Period_Formula_Audit.csv`. |
+| R Markdown YAML and chunk labels | Passed current revision | Valid YAML and 206 uniquely labeled R chunks. |
+| Actual R parsing | Passed current revision | 206/206 chunks, including disabled chunks; knitr purl and complete extracted-R parsing. |
+| User-requested two-scale directory relocation | Prior seven runtime checks; current path audit passed | New root and five subfolders; disabled exports write nothing; fabricated CSV/figure/verified-map exports and RGP/final manifests use the new paths. That earlier directory-only revision changed one root assignment among 206 chunks. Runtime checks were performed on Linux; study GIS/data, full knit and actual Windows writes remain unverified. |
+| GreenFeed select masking correction | Prior nine targeted checks passed; correction retained | Actual multcomp/MASS package-order conflict and both prior errors reproduced; corrected 15-row schedule/date classifier and 30-row fabricated reporting table preserved. Delivered setup alias also restores both previous interactive calls. Namespace lookup only; protected models unchanged. |
 | Protected model argument comparison | Passed | All four reference formula/data/REML call arguments identical; 33/46 protected chunks text-identical. |
 | Installed-package namespace API audit | Passed for 142 uses | Zero unavailable-function failures among checked APIs; 32 uses could not be checked because their packages were absent. |
 | Shared runtime/model/diagnostic checks | Prior evidence retained | Unchanged shared helper, parameter and map-safety functions previously passed 29 synthetic checks; these records are distinct from current formula-specific tests. |
-| Current final export guards/inventory | 9/9 synthetic checks passed | All BW/GF disabled-export guards, eleven integrated CSVs, current-run inventory and no-delete behavior. |
-| Statistical-layer integration | 32 current synthetic assertions passed | 22 primary requested-structure/reuse/count/grid/diagnostic checks; nine Global gas provenance and empty-schema checks; one comparison-cache check. |
-| Authoritative area and stale-source safeguards | 23/23 current synthetic checks passed | Exact source reuse; missing, failed or unequal area source unavailable; pre-change models with extra random effects rejected instead of silently reused. Together with the preceding row, 55 statistical assertions passed. |
-| Global GreenFeed models and interfaces | Current synthetic checks passed | Exactly two Gaussian models with literal Year/Pasture groups; KR inference, 60 EMM rows, n/tests/letters/diagnostics/cache, unchanged gas values and 459-date plus NA classifications. |
-| Two-scale models, counts, endpoints and maps | 10 current synthetic check groups passed | Qualified Q gas thresholds exercised in test-only fixtures; distinct fitted animal counts after missingness; requested P/S and unchanged C; duplicate gain consolidation and distinct sensitivities; endpoint rules and map writer checks. |
-| Publication cross-schema execution | Current synthetic execution passed | All five table families; ten n values matched retained synthetic-model nobs; one workbook reopened with 30 nonempty sheets; no duplicate Table 1 raw rows; missing and empty results preserved. |
-| Nine-map writer | Current synthetic checks passed | Nine fabricated plots produced nine PNGs and one inventory; disabled/failed writes handled. These are not research maps. |
+| Final export guards/inventory | Historical: 9/9 synthetic checks passed | Prior BW/GF disabled-export guards, eleven integrated CSVs, current-run inventory and no-delete checks; additive-formula changes do not themselves establish execution of study exports. |
+| Statistical-layer integration | 34 current additive-model assertions passed | 24 primary structure/reuse/count/grid/diagnostic checks, nine Global gas provenance/empty-schema checks and one comparison-cache check. |
+| Authoritative area and stale-source safeguards | 25/25 current additive-model assertions passed | Exact source reuse; missing, failed or unequal source unavailable; pre-change management-by-period interactions and extra random effects rejected instead of silently reused. Together with the preceding row, 59 statistical assertions passed. |
+| BW source area models and reporting | Current synthetic execution passed | Actual delivered source code fitted both additive RGP models and the unchanged seasonal model; fixed/ANOVA terms, Year/Pasture groups, fitted n, residual Shapiro tests and model-derived reporting checked for all three. |
+| Global GreenFeed models and interfaces | Current additive-model synthetic execution passed | All 47 GreenFeed chunks parsed; 459 dates plus missing dates classified; exactly two Year/Pasture Gaussian fits, KR inference, 60 EMM rows, counts/tests/letters/diagnostics/cache and common management contrasts across periods verified. No removed interaction tests or fixed-year duplicate fits. |
+| Two-scale models, counts and endpoints | Five current additive-model synthetic check groups passed | Qualified Q fits use additive Period with test-only thresholds; fitted counts after missingness, pending Q status when unset, additive P models, unchanged S/C, equivalent gain consolidation and distinct endpoint/window sensitivities checked. Actual Q analyses remain pending the user's sampling rule. |
+| Publication cross-schema execution | Six current additive-model synthetic check groups passed | All five table families and ten fitted n values verified; one workbook reopened with 30 nonempty sheets; removed period-interaction columns absent; disabled exports, Table 1 exclusion, missing SE/P and typed empty results preserved. |
+| Word model/dataset catalog | Current document checks passed | Word file contains all 62 model entries, ten tables and six descriptive measure groups, with current additive-period formulas and dataset metadata. Independent DOCX integrity, formula, row-count and dataset checks passed; visual pagination was not rendered. These are code specifications, not study results. |
+| Nine-map writer | Historical synthetic checks passed | Nine fabricated plots previously produced nine PNGs and one inventory with disabled/failed write handling. These are not research maps. |
 | Study statistical model execution | **Not run** | Original source datasets absent. No actual n/EMM/SE/P/CLD values validated. |
 | Study export creation / GIS writes | **Not run** | Original inputs absent; sf unavailable in validation runtime. Actual map appearance, geometry/equality assertions and GeoPackage writes require project inputs. |
 | Full document knit | **Not run** | Source datasets absent; full application dependencies were not available. |
 
 The validation runtime was R 4.5.0 with lme4 1.1-37, lmerTest 3.1-3, emmeans 1.10.7, and pbkrtest 0.5.4. Tested versions are recorded in `validation/Package_Versions.csv`. `lubridate`, `car`, `sf`, `readxl`, and `DHARMa` were unavailable in that local validation runtime; the complete workflow was therefore not executed. Synthetic tests isolated the installed helper dependencies and never substituted generated data for the research analysis.
+
+Current additive-model evidence is separate from `validation/Historical_Interaction_Models/`, which retains prior formula-specific test records for provenance. Passing historical interaction-model tests is not presented as validation of the current additive models.
 
 Tests exposed and corrected unexported `emmeans::pairs` calls, empty-result normalization/schema failures, scoped prerequisite lookups, export-switch leaks, and partial-render overwrite risks. Several generated models using the intentionally unreplicated six-pasture allocation also produced singularity or unstable/negative-variance inference warnings. Passing code-path tests does not establish valid treatment inference under that design. Missing numerical results are retained as missing and flagged for review.
 
@@ -212,7 +219,7 @@ rmarkdown::render("AFRI_CHAPTER_2_Optimized.Rmd",
 
 `pbkrtest` and `ragg` are optional enhancements; their availability is checked. `DT` is optional and assignment-conflict reporting falls back to `knitr::kable()` if it is absent. System libraries may be required when installing spatial/graphics packages from source. The Rmd itself does not install packages or change the working directory.
 
-For individual chunks, run shared runtime/setup and the required upstream data chunks first. Unchanged question requests reuse their fitted objects. Start a fresh R session for this model-specification update. Pre-change models with extra random effects are rejected, and changed formula/data requests cannot silently reuse a stale registry. After deliberately changing inputs or model specifications again, start a fresh session.
+For individual chunks, run shared runtime/setup and the required upstream data chunks first. Unchanged question requests reuse their fitted objects. Start a fresh R session for this model-specification update. Pre-change models with management-by-period interactions or extra random effects are rejected, and changed formula/data requests cannot silently reuse a stale registry. After deliberately changing inputs or model specifications again, start a fresh session.
 
 For an already-running session affected only by `select()` masking, run the following in the Console, then rerun the failed GreenFeed chunk. Existing calculated objects can be retained; the namespace fix does not require a new session.
 

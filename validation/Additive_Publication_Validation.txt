@@ -1,0 +1,16 @@
+PASS final renamed consumer: 10 response-model n values equal actual retained-model nobs; all five table families generated.
+Expected fixture warnings: 
+PASS additive consumer: fitted period terms are additive; publication has only TRT/SR/TRT×SR/Period tests and no removed interaction columns.
+# A tibble: 1 × 3
+  File                                                   Export_requested Status
+  <chr>                                                  <lgl>            <chr> 
+1 /tmp/afri_final_publication_noexport_10b913fdf3cf1/01… FALSE            Not r…
+PASS final renamed consumer: no exports when disabled, no duplicate Table1 raw rows.
+# A tibble: 1 × 3
+  File                                                   Export_requested Status
+  <chr>                                                  <lgl>            <chr> 
+1 /tmp/afri_final_publication_export_10b915516110b/01_T… TRUE             Creat…
+PASS final renamed consumer: workbook reopened, 30 nonempty sheets, actual synthetic retained-result n and Table1 exclusion verified.
+PASS final renamed consumer: copied-source missing SE/P preserved as dash, not fabricated.
+PASS final renamed consumer: typed empty producer tables handled without crash or invented results.
+Statistical tables and audits: /tmp/afri_final_publication_export_10b915516110b/01_Tables/AFRI_Statistical_Results.xlsx

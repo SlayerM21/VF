@@ -1,0 +1,1 @@
+These records belong to the earlier interaction-period model revision. They are preserved as historical validation evidence, not current additive-model checks or actual AFRI study results. Use validation/Additive_* records for the current user-requested model structure.

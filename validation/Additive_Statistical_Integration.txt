@@ -1,0 +1,105 @@
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+Loading required package: Matrix
+
+Attaching package: ‘Matrix’
+
+The following objects are masked from ‘package:tidyr’:
+
+    expand, pack, unpack
+
+
+Attaching package: ‘lmerTest’
+
+The following object is masked from ‘package:lme4’:
+
+    lmer
+
+The following object is masked from ‘package:stats’:
+
+    step
+
+Welcome to emmeans.
+Caution: You lose important information if you filter this package's results.
+See '? untidy'
+Loading required package: mvtnorm
+Loading required package: survival
+Loading required package: TH.data
+Loading required package: MASS
+
+Attaching package: ‘MASS’
+
+The following object is masked from ‘package:dplyr’:
+
+    select
+
+
+Attaching package: ‘TH.data’
+
+The following object is masked from ‘package:MASS’:
+
+    geyser
+
+Note: adjust = "tukey" was changed to "sidak"
+because "tukey" is only appropriate for one set of pairwise comparisons
+Note: adjust = "tukey" was changed to "sidak"
+because "tukey" is only appropriate for one set of pairwise comparisons
+Note: adjust = "tukey" was changed to "sidak"
+because "tukey" is only appropriate for one set of pairwise comparisons
+Note: adjust = "tukey" was changed to "sidak"
+because "tukey" is only appropriate for one set of pairwise comparisons
+Note: adjust = "tukey" was changed to "sidak"
+because "tukey" is only appropriate for one set of pairwise comparisons
+Note: adjust = "tukey" was changed to "sidak"
+because "tukey" is only appropriate for one set of pairwise comparisons
+Note: adjust = "tukey" was changed to "sidak"
+because "tukey" is only appropriate for one set of pairwise comparisons
+boundary (singular) fit: see help('isSingular')
+Note: adjust = "tukey" was changed to "sidak"
+because "tukey" is only appropriate for one set of pairwise comparisons
+Note: adjust = "tukey" was changed to "sidak"
+because "tukey" is only appropriate for one set of pairwise comparisons
+Note: adjust = "tukey" was changed to "sidak"
+because "tukey" is only appropriate for one set of pairwise comparisons
+Note: adjust = "tukey" was changed to "sidak"
+because "tukey" is only appropriate for one set of pairwise comparisons
+Note: adjust = "tukey" was changed to "sidak"
+because "tukey" is only appropriate for one set of pairwise comparisons
+Note: adjust = "tukey" was changed to "sidak"
+because "tukey" is only appropriate for one set of pairwise comparisons
+Note: adjust = "tukey" was changed to "sidak"
+because "tukey" is only appropriate for one set of pairwise comparisons
+PASS selected response models fit without fallback
+PASS ADG fitted model reused exactly
+PASS reference monthly model reused exactly
+PASS mapped spatial model reused exactly
+PASS equivalent gas alias reused exactly
+PASS EMM cell keys unique
+PASS CLD cell keys unique
+PASS response sample sizes populated
+PASS period animal full grid retained
+PASS requested animal-period model has only Year/Pasture random intercepts
+PASS requested pasture-period model has only Year/Pasture random intercepts
+PASS diagnostics cover retained models
+PASS diagnostic fields retained
+PASS period letters have within-cell scientific scope
+PASS unreplicated management confirmatory tests withheld
+PASS unreplicated management letters withheld
+PASS unequal outcomes not falsely consolidated
+PASS unavailable response identified
+PASS random-structure QC agrees with requested groups for every retained source
+PASS fixed-term QC agrees with requested additive Period models for every retained source
+PASS animal-period model includes additive Period and retains only TRT:SR interaction
+PASS animal/pasture-year metadata retained for keys and counts
+PASS animal-period inference notes record omitted within-animal grouping limitation
+PASS non-repeated animal metadata do not impose an unrequested random-group prerequisite
+Stats synthetic tests passed: 24

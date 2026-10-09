@@ -1,0 +1,11 @@
+Word document of current additive-period model inventory
+
+Rmd SHA256: c1e9b2e364ba3d9b31970a97f593900032ae2a4f0bf2f91fb51ca12e770ce096
+DOCX SHA256: 5a645fa8de861b4f7f37af6e395cf7c4376d80082971711722851bda4e693aff
+
+PASS: DOCX ZIP integrity and reopening with python-docx.
+PASS: 10 tables; 62 modeled/source/conditional entries and 6 descriptive rows.
+PASS: P/A/Q use TRT*SR+Period; F uses TRT*SR+RotationPeriod; S/C unchanged.
+PASS: no old three-way period model formulas; dataset/reuse/eligibility caveats preserved.
+PASS: current formula legend, links, Unicode and study-execution limitation retained.
+Visual pagination not rendered. Study statistical models and exports not executed.

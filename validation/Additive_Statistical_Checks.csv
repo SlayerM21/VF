@@ -1,0 +1,60 @@
+Suite,Check,Status,Data
+Primary,selected response models fit without fallback,PASS,Generated synthetic fixtures; study-data fits and exports not executed
+Primary,ADG fitted model reused exactly,PASS,Generated synthetic fixtures; study-data fits and exports not executed
+Primary,reference monthly model reused exactly,PASS,Generated synthetic fixtures; study-data fits and exports not executed
+Primary,mapped spatial model reused exactly,PASS,Generated synthetic fixtures; study-data fits and exports not executed
+Primary,equivalent gas alias reused exactly,PASS,Generated synthetic fixtures; study-data fits and exports not executed
+Primary,EMM cell keys unique,PASS,Generated synthetic fixtures; study-data fits and exports not executed
+Primary,CLD cell keys unique,PASS,Generated synthetic fixtures; study-data fits and exports not executed
+Primary,response sample sizes populated,PASS,Generated synthetic fixtures; study-data fits and exports not executed
+Primary,period animal full grid retained,PASS,Generated synthetic fixtures; study-data fits and exports not executed
+Primary,requested animal-period model has only Year/Pasture random intercepts,PASS,Generated synthetic fixtures; study-data fits and exports not executed
+Primary,requested pasture-period model has only Year/Pasture random intercepts,PASS,Generated synthetic fixtures; study-data fits and exports not executed
+Primary,diagnostics cover retained models,PASS,Generated synthetic fixtures; study-data fits and exports not executed
+Primary,diagnostic fields retained,PASS,Generated synthetic fixtures; study-data fits and exports not executed
+Primary,period letters have within-cell scientific scope,PASS,Generated synthetic fixtures; study-data fits and exports not executed
+Primary,unreplicated management confirmatory tests withheld,PASS,Generated synthetic fixtures; study-data fits and exports not executed
+Primary,unreplicated management letters withheld,PASS,Generated synthetic fixtures; study-data fits and exports not executed
+Primary,unequal outcomes not falsely consolidated,PASS,Generated synthetic fixtures; study-data fits and exports not executed
+Primary,unavailable response identified,PASS,Generated synthetic fixtures; study-data fits and exports not executed
+Primary,random-structure QC agrees with requested groups for every retained source,PASS,Generated synthetic fixtures; study-data fits and exports not executed
+Primary,fixed-term QC agrees with requested additive Period models for every retained source,PASS,Generated synthetic fixtures; study-data fits and exports not executed
+Primary,animal-period model includes additive Period and retains only TRT:SR interaction,PASS,Generated synthetic fixtures; study-data fits and exports not executed
+Primary,animal/pasture-year metadata retained for keys and counts,PASS,Generated synthetic fixtures; study-data fits and exports not executed
+Primary,animal-period inference notes record omitted within-animal grouping limitation,PASS,Generated synthetic fixtures; study-data fits and exports not executed
+Primary,non-repeated animal metadata do not impose an unrequested random-group prerequisite,PASS,Generated synthetic fixtures; study-data fits and exports not executed
+GF provenance and empty schemas,matching GF mean model reused exactly,PASS,Generated synthetic fixtures; study-data fits and exports not executed
+GF provenance and empty schemas,matching GF inference reused exactly,PASS,Generated synthetic fixtures; study-data fits and exports not executed
+GF provenance and empty schemas,reused GF outputs have original export owner,PASS,Generated synthetic fixtures; study-data fits and exports not executed
+GF provenance and empty schemas,GF period metadata normalize without recomputing EMMs,PASS,Generated synthetic fixtures; study-data fits and exports not executed
+GF provenance and empty schemas,GF additive period and TRT:SR terms normalize without introducing period interactions,PASS,Generated synthetic fixtures; study-data fits and exports not executed
+GF provenance and empty schemas,same mean with conflicting window provenance is not refitted,PASS,Generated synthetic fixtures; study-data fits and exports not executed
+GF provenance and empty schemas,all-failed omnibus retains schema,PASS,Generated synthetic fixtures; study-data fits and exports not executed
+GF provenance and empty schemas,all-failed CLD retains schema,PASS,Generated synthetic fixtures; study-data fits and exports not executed
+GF provenance and empty schemas,all-failed model metadata retains schema,PASS,Generated synthetic fixtures; study-data fits and exports not executed
+Period-comparison cache,retained-period comparison cache returns identical object without a second entry,PASS,Generated synthetic fixtures; study-data fits and exports not executed
+Source authority and structure,Exact matched area rows reuse authoritative BW model,PASS,Generated synthetic fixtures; study-data fits and exports not executed
+Source authority and structure,Retained BW area inference reused without recalculation,PASS,Generated synthetic fixtures; study-data fits and exports not executed
+Source authority and structure,Retained BW export ownership preserved,PASS,Generated synthetic fixtures; study-data fits and exports not executed
+Source authority and structure,Stale source with extra random group is rejected,PASS,Generated synthetic fixtures; study-data fits and exports not executed
+Source authority and structure,Stale source with extra random group is rejected - model registry unchanged,PASS,Generated synthetic fixtures; study-data fits and exports not executed
+Source authority and structure,Stale source with Period interactions and correct random groups is rejected,PASS,Generated synthetic fixtures; study-data fits and exports not executed
+Source authority and structure,Stale source with Period interactions and correct random groups is rejected - model registry unchanged,PASS,Generated synthetic fixtures; study-data fits and exports not executed
+Source authority and structure,Missing source registry is explicitly unavailable,PASS,Generated synthetic fixtures; study-data fits and exports not executed
+Source authority and structure,Missing source registry is explicitly unavailable - model registry unchanged,PASS,Generated synthetic fixtures; study-data fits and exports not executed
+Source authority and structure,Missing source model key is explicitly unavailable,PASS,Generated synthetic fixtures; study-data fits and exports not executed
+Source authority and structure,Missing source model key is explicitly unavailable - model registry unchanged,PASS,Generated synthetic fixtures; study-data fits and exports not executed
+Source authority and structure,Missing retained source model is explicitly unavailable,PASS,Generated synthetic fixtures; study-data fits and exports not executed
+Source authority and structure,Missing retained source model is explicitly unavailable - model registry unchanged,PASS,Generated synthetic fixtures; study-data fits and exports not executed
+Source authority and structure,Failed source model propagates original error,PASS,Generated synthetic fixtures; study-data fits and exports not executed
+Source authority and structure,Failed source model propagates original error - model registry unchanged,PASS,Generated synthetic fixtures; study-data fits and exports not executed
+Source authority and structure,Unequal integrated area outcomes require reconciliation,PASS,Generated synthetic fixtures; study-data fits and exports not executed
+Source authority and structure,Unequal integrated area outcomes require reconciliation - model registry unchanged,PASS,Generated synthetic fixtures; study-data fits and exports not executed
+Source authority and structure,Missing authoritative model data require reconciliation,PASS,Generated synthetic fixtures; study-data fits and exports not executed
+Source authority and structure,Missing authoritative model data require reconciliation - model registry unchanged,PASS,Generated synthetic fixtures; study-data fits and exports not executed
+Source authority and structure,Actual caller records area source failure as unavailable without fallback,PASS,Generated synthetic fixtures; study-data fits and exports not executed
+Source authority and structure,Final caller audit retains original source failure reason,PASS,Generated synthetic fixtures; study-data fits and exports not executed
+Source authority and structure,Inside-RGP area also rejects missing authoritative source,PASS,Generated synthetic fixtures; study-data fits and exports not executed
+Source authority and structure,Inside-RGP area also rejects missing authoritative source - model registry unchanged,PASS,Generated synthetic fixtures; study-data fits and exports not executed
+Source authority and structure,Whole-season area also rejects missing authoritative source,PASS,Generated synthetic fixtures; study-data fits and exports not executed
+Source authority and structure,Whole-season area also rejects missing authoritative source - model registry unchanged,PASS,Generated synthetic fixtures; study-data fits and exports not executed

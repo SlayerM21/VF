@@ -1,0 +1,10 @@
+PASS: actual delivered BW source fits both additive period models and the preserved seasonal model.
+PASS: actual BW fitted/ANOVA terms match additive RGP or unchanged S, Year/Pasture groups and fitted sample counts.
+PASS: all three fits retain residual Shapiro diagnostics and model-derived EMM/SE/count/test reporting tables.
+NOTE: fabricated data only; no study area model, GIS export or full knit was executed.
+Note: adjust = "tukey" was changed to "sidak"
+because "tukey" is only appropriate for one set of pairwise comparisons
+Note: adjust = "tukey" was changed to "sidak"
+because "tukey" is only appropriate for one set of pairwise comparisons
+Note: adjust = "tukey" was changed to "sidak"
+because "tukey" is only appropriate for one set of pairwise comparisons

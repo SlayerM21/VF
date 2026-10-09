@@ -1,0 +1,87 @@
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+Loading required package: Matrix
+
+Attaching package: ‘Matrix’
+
+The following objects are masked from ‘package:tidyr’:
+
+    expand, pack, unpack
+
+
+Attaching package: ‘lmerTest’
+
+The following object is masked from ‘package:lme4’:
+
+    lmer
+
+The following object is masked from ‘package:stats’:
+
+    step
+
+Welcome to emmeans.
+Caution: You lose important information if you filter this package's results.
+See '? untidy'
+Loading required package: mvtnorm
+Loading required package: survival
+Loading required package: TH.data
+Loading required package: MASS
+
+Attaching package: ‘MASS’
+
+The following object is masked from ‘package:dplyr’:
+
+    select
+
+
+Attaching package: ‘TH.data’
+
+The following object is masked from ‘package:MASS’:
+
+    geyser
+
+PASS Exact matched area rows reuse authoritative BW model
+PASS Retained BW area inference reused without recalculation
+PASS Retained BW export ownership preserved
+PASS Stale source with extra random group is rejected
+PASS Stale source with extra random group is rejected - model registry unchanged
+<simpleError in afri_fit_one_response(area_spec, canonical_fits): active_ha_all_pasture: retained source model does not match the requested Year/Pasture-only random structure; rerun its source model chunks. No competing model fitted.>
+PASS Stale source with Period interactions and correct random groups is rejected
+PASS Stale source with Period interactions and correct random groups is rejected - model registry unchanged
+<simpleError in afri_fit_one_response(area_spec, canonical_fits): active_ha_all_pasture: retained source model does not match the requested fixed-effects structure (TRT * SR + additive Period); rerun its source model chunks. No competing model fitted.>
+PASS Missing source registry is explicitly unavailable
+PASS Missing source registry is explicitly unavailable - model registry unchanged
+<simpleError in afri_fit_one_response(area_spec, canonical_fits): ALL_PASTURE_GRAZING__RGP: required Section 6 pasture_use_models registry is unavailable; no replacement area model fitted.>
+PASS Missing source model key is explicitly unavailable
+PASS Missing source model key is explicitly unavailable - model registry unchanged
+<simpleError in afri_fit_one_response(area_spec, canonical_fits): ALL_PASTURE_GRAZING__RGP: required Section 6 area-model entry is missing; no replacement area model fitted.>
+PASS Missing retained source model is explicitly unavailable
+PASS Missing retained source model is explicitly unavailable - model registry unchanged
+<simpleError in afri_fit_one_response(area_spec, canonical_fits): ALL_PASTURE_GRAZING__RGP: retained Section 6 Gaussian area model is unavailable or failed. No replacement area model fitted.>
+PASS Failed source model propagates original error
+PASS Failed source model propagates original error - model registry unchanged
+<simpleError in afri_fit_one_response(area_spec, canonical_fits): ALL_PASTURE_GRAZING__RGP: retained Section 6 Gaussian area model is unavailable or failed: Synthetic source fitting failure No replacement area model fitted.>
+PASS Unequal integrated area outcomes require reconciliation
+PASS Unequal integrated area outcomes require reconciliation - model registry unchanged
+<simpleError in afri_fit_one_response(area_spec, canonical_fits): ALL_PASTURE_GRAZING__RGP: integrated area rows/values differ from the retained Section 6 model; reconcile the datasets before inference. No replacement area model fitted.>
+PASS Missing authoritative model data require reconciliation
+PASS Missing authoritative model data require reconciliation - model registry unchanged
+<simpleError in afri_fit_one_response(area_spec, canonical_fits): ALL_PASTURE_GRAZING__RGP: integrated area rows/values differ from the retained Section 6 model; reconcile the datasets before inference. No replacement area model fitted.>
+PASS Actual caller records area source failure as unavailable without fallback
+PASS Final caller audit retains original source failure reason
+PASS Inside-RGP area also rejects missing authoritative source
+PASS Inside-RGP area also rejects missing authoritative source - model registry unchanged
+<simpleError in afri_fit_one_response(area_spec, canonical_fits): INSIDE_RGP_GRAZING__RGP: required Section 6 area-model entry is missing; no replacement area model fitted.>
+PASS Whole-season area also rejects missing authoritative source
+PASS Whole-season area also rejects missing authoritative source - model registry unchanged
+<simpleError in afri_fit_one_response(area_spec, canonical_fits): WHOLE_SEASON_GRAZING__Season: required Section 6 area-model entry is missing; no replacement area model fitted.>
+Authoritative-area synthetic checks passed: 25

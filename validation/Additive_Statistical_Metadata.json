@@ -1,0 +1,14 @@
+{
+  "source": "statistics_revised.Rmd",
+  "source_sha256": "6941811ec124411e65e6bd3b61ab8acbfb7a1ea7e56ce3af70c877fbb6cb9ff0",
+  "synthetic_assertions": 59,
+  "suites": {
+    "statistics_additive_synthetic_test.log": 24,
+    "statistics_additive_extra_synthetic_test.log": 9,
+    "statistics_additive_cache_test.log": 1,
+    "statistics_additive_area_authority_test.log": 25
+  },
+  "statistical_source_parse": "PASS",
+  "models": "TRT * SR + Period + (1 | Year) + (1 | Pasture) for period responses; baseline S unchanged",
+  "study_data_execution": "Not performed: input datasets unavailable"
+}

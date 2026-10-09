@@ -1,0 +1,12 @@
+Note: adjust = "tukey" was changed to "sidak"
+because "tukey" is only appropriate for one set of pairwise comparisons
+PASS matching GF mean model reused exactly
+PASS matching GF inference reused exactly
+PASS reused GF outputs have original export owner
+PASS GF period metadata normalize without recomputing EMMs
+PASS GF interaction term normalizes consistently
+PASS same mean with conflicting window provenance is not refitted
+PASS all-failed omnibus retains schema
+PASS all-failed CLD retains schema
+PASS all-failed model metadata retains schema
+Extra synthetic checks passed: 9

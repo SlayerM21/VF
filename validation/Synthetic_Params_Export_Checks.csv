@@ -1,0 +1,7 @@
+"check","result"
+"Interactive execution supplies YAML parameter defaults","PASS"
+"Render parameter overrides retained and defaults filled","PASS"
+"Invalid parameter type fails clearly","PASS"
+"Two-scale export_results FALSE writes no directories/files","PASS"
+"Enabled two-scale CSV export creates final folder and roundtrips","PASS"
+"Enabled two-scale plot export creates PNG","PASS"

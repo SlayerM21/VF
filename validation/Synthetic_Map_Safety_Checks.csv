@@ -1,0 +1,6 @@
+"check","result"
+"HMM PNG disabled creates no output directory","PASS"
+"HMM PNG enabled writes expected nonempty PNG","PASS"
+"HMM PNG failure preserves existing target","PASS"
+"HMM partial-render failure preserves existing target","PASS"
+"BW setup disabled creates no final analysis directory","PASS"

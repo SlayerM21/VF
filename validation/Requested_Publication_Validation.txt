@@ -1,0 +1,13 @@
+Current requested-model publication validation: PASS
+Executed: /tmp/afri_publication_cross_schema.R
+Input: freshly generated Year/Pasture-only synthetic statistical state and the final assembled Rmd publication chunks.
+
+10 reported sample sizes matched actual retained synthetic-model nobs.
+All five remaining publication table families were generated.
+export_results=FALSE created no publication export directory.
+No duplicate Table 1 raw reporting rows were exported.
+The synthetic workbook was written and reopened with 30 nonempty sheets.
+Missing SE/P values were retained as unavailable display values.
+Typed empty result tables were handled without fabricated results.
+
+This execution used generated synthetic fixtures only. No study model, research workbook, GIS export, or full document knit was executed.

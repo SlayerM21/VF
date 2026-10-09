@@ -1,0 +1,11 @@
+Check,Status,Evidence,Scope
+"fabricated raw-endpoint ADG and ANCOVA questions fit Gaussian LMMs; EMMs, n, letters, tests and diagnostics created.",PASS,requested_integrated_model_validation.log,Synthetic fixtures; no study-data result
+requested S and C formulas retain Year/Pasture only; unset optional gas thresholds remain pending.,PASS,requested_integrated_model_validation.log,Synthetic fixtures; no study-data result
+fabricated qualifying CH4/CO2 models use requested Q formula and retain correct distinct animal/model-row counts after missing response and Year exclusions.,PASS,requested_integrated_model_validation.log,Synthetic fixtures; no study-data result
+"fabricated percent-use models run for two period grids and one independent seasonal grid, while identical gain questions are consolidated.",PASS,requested_integrated_model_validation.log,Synthetic fixtures; no study-data result
+genuinely different period and seasonal gain sensitivities retain requested P/S formulas; equivalent period gain remains consolidated.,PASS,requested_integrated_model_validation.log,Synthetic fixtures; no study-data result
+all 13 modified segment R chunks parse.,PASS,requested_integrated_validation.log,Static R parsing
+export_results=FALSE creates no final-map output directories.,PASS,requested_integrated_validation.log,Synthetic fixtures; no study-data result
+fabricated three-grid collection exports exactly nine nonempty PNGs and one inventory.,PASS,requested_integrated_validation.log,Synthetic fixtures; no study-data result
+failed synthetic plot leaves existing output untouched.,PASS,requested_integrated_validation.log,Synthetic fixtures; no study-data result
+synthetic nonconsecutive endpoint dates preserve distinct means and the 2024 one-day initial rule.,PASS,requested_integrated_validation.log,Synthetic fixtures; no study-data result

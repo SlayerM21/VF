@@ -1,0 +1,50 @@
+Chapter_2_Results/
+├── 01_Grazing_Behavior_Spatial_Aera/
+│   ├── 01_Tables/                       # HMM data/QC, Table 1 XLSX, map inventory
+│   ├── 02_Model_Results/                # four retained reference fits/summaries
+│   ├── 03_Figures/                      # reference EMM/diagnostic PNGs
+│   ├── 04_Maps/
+│   │   ├── 01_QC_State/
+│   │   ├── 02_Final_State/
+│   │   ├── 03_QC_Combined/
+│   │   ├── 04_Final_Combined/
+│   │   ├── 05_QC_Separate/
+│   │   ├── 06_Final_Separate/
+│   │   ├── 07_Active_Area/
+│   │   └── Three_Grid_Metrics/
+│   │       ├── 01_Body_Weight_LWG_Three_Grids/  # three PNGs
+│   │       ├── 02_CH4_Three_Grids/             # three PNGs
+│   │       └── 03_CO2_Three_Grids/             # three PNGs
+│   ├── 05_Spatial_Data/                 # HMM/base/grid GeoPackages
+│   ├── Two_Scale_Analysis/
+│   │   ├── 01_Tables/                   # coverage/endpoints/GPS/inference/QC
+│   │   ├── 02_Model_Results/            # unique conditional/sensitivity RDS
+│   │   ├── 03_Figures/                  # coverage + Diagnostics/
+│   │   ├── 04_Maps/RGP_two_active_area_grid_maps/
+│   │   └── 05_Spatial_Data/Whole_season_unique_active_grid.gpkg
+│   └── Integrated_Analysis/01_Tables/   # eleven unique final dataset/QC CSVs
+├── 02_Grazing_BW_AFRI/
+│   ├── 01_Tables/
+│   ├── 02_Model_Results/                # splines, authoritative ADG/area fits
+│   ├── 03_Figures/                      # final knitr SVGs
+│   ├── 04_Maps/                         # distinct final knitr SVG layouts
+│   ├── 05_Spatial_Data/period_production_sf.gpkg
+│   └── 06_Logs/                         # BW export/checksum audits
+├── 03_Grazing_GreenFeed_AFRI/
+│   ├── 01_Tables/                       # curated QC/means/inference CSVs
+│   ├── 02_Model_Results/                # two retained Year/Pasture primary gas models
+│   ├── 03_Figures/                      # final TIFFs + diagnostic PDFs
+│   ├── 04_Maps/                         # final CH4/CO2 TIFFs
+│   ├── 05_Spatial_Data/GreenFeed_Gas_Per_Active_Hectare.gpkg
+│   └── 06_Logs/GreenFeed_Export_Audit.csv
+└── 06_Statistical_Analysis/
+    ├── 01_Tables/AFRI_Statistical_Results.xlsx
+    ├── 02_Model_Results/Retained_Gaussian_LMMs.rds
+    ├── 03_Figures/Diagnostics/          # newly owned model diagnostics only
+    └── 06_Logs/
+        ├── Complete_Analysis_Session_Info.txt
+        └── Final_Export_Inventory.csv
+
+Folders are created only when their designated outputs are written.
+Existing obsolete directories and files are not automatically deleted.
+Study-data export creation has not been verified.

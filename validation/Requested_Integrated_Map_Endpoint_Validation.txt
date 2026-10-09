@@ -1,0 +1,32 @@
+PASS: all 13 modified segment R chunks parse.
+Final map objects are available; export_results is FALSE so files were not written.
+PASS: export_results=FALSE creates no final-map output directories.
+
+
+Table: Final BW/LWG, CH4, and CO2 three-grid map exports
+
+|Metric |Grid            |File                                                                                                                                                                        |Exists | Size_bytes| Path_length|
+|:------|:---------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:------|----------:|-----------:|
+|BW_LWG |ALL_PASTURE_RGP |/tmp/afri_integrated_synthetic_b0521eabef1a/export/01_Grazing_Behavior_Spatial_Aera/04_Maps/Three_Grid_Metrics/01_Body_Weight_LWG_Three_Grids/BW_LWG_01_ALL_PASTURE_RGP.png |TRUE   |      89387|         171|
+|BW_LWG |INSIDE_RGP      |/tmp/afri_integrated_synthetic_b0521eabef1a/export/01_Grazing_Behavior_Spatial_Aera/04_Maps/Three_Grid_Metrics/01_Body_Weight_LWG_Three_Grids/BW_LWG_02_INSIDE_RGP.png      |TRUE   |      89387|         166|
+|BW_LWG |WHOLE_SEASON    |/tmp/afri_integrated_synthetic_b0521eabef1a/export/01_Grazing_Behavior_Spatial_Aera/04_Maps/Three_Grid_Metrics/01_Body_Weight_LWG_Three_Grids/BW_LWG_03_WHOLE_SEASON.png    |TRUE   |      74965|         168|
+|CH4    |ALL_PASTURE_RGP |/tmp/afri_integrated_synthetic_b0521eabef1a/export/01_Grazing_Behavior_Spatial_Aera/04_Maps/Three_Grid_Metrics/02_CH4_Three_Grids/CH4_01_ALL_PASTURE_RGP.png                |TRUE   |      89387|         156|
+|CH4    |INSIDE_RGP      |/tmp/afri_integrated_synthetic_b0521eabef1a/export/01_Grazing_Behavior_Spatial_Aera/04_Maps/Three_Grid_Metrics/02_CH4_Three_Grids/CH4_02_INSIDE_RGP.png                     |TRUE   |      89387|         151|
+|CH4    |WHOLE_SEASON    |/tmp/afri_integrated_synthetic_b0521eabef1a/export/01_Grazing_Behavior_Spatial_Aera/04_Maps/Three_Grid_Metrics/02_CH4_Three_Grids/CH4_03_WHOLE_SEASON.png                   |TRUE   |      74965|         153|
+|CO2    |ALL_PASTURE_RGP |/tmp/afri_integrated_synthetic_b0521eabef1a/export/01_Grazing_Behavior_Spatial_Aera/04_Maps/Three_Grid_Metrics/03_CO2_Three_Grids/CO2_01_ALL_PASTURE_RGP.png                |TRUE   |      89387|         156|
+|CO2    |INSIDE_RGP      |/tmp/afri_integrated_synthetic_b0521eabef1a/export/01_Grazing_Behavior_Spatial_Aera/04_Maps/Three_Grid_Metrics/03_CO2_Three_Grids/CO2_02_INSIDE_RGP.png                     |TRUE   |      89387|         151|
+|CO2    |WHOLE_SEASON    |/tmp/afri_integrated_synthetic_b0521eabef1a/export/01_Grazing_Behavior_Spatial_Aera/04_Maps/Three_Grid_Metrics/03_CO2_Three_Grids/CO2_03_WHOLE_SEASON.png                   |TRUE   |      74965|         153|
+PASS: fabricated three-grid collection exports exactly nine nonempty PNGs and one inventory.
+PASS: failed synthetic plot leaves existing output untouched.
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+PASS: synthetic nonconsecutive endpoint dates preserve distinct means and the 2024 one-day initial rule.

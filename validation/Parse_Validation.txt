@@ -1,0 +1,9 @@
+Input: /workspace/afri_revision/deliverables/AFRI_CHAPTER_2_Optimized.Rmd
+R: R version 4.5.0 (2025-04-11)
+R chunks: 206
+Chunks parsed: 206/206
+Duplicate explicit labels: 
+YAML: PASS
+knitr purl: PASS
+Extracted R parse: PASS
+Dataset analyses and full knit: NOT RUN (source datasets unavailable).

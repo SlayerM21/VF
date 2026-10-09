@@ -1,0 +1,24 @@
+PASS: parsed all 47 GreenFeed R chunks
+PASS: schedule/date classifier matches original for 459 study and out-of-window dates, plus missing dates
+Warning in eval(parse(text = get_chunk(revised, "gf-model-prepare-animal-days"))) :
+  At least one TRT x SR combination has fewer than two independent pastures. Treat TRT, SR, and TRT x SR tests as exploratory because treatment effects cannot be separated fully from individual pasture effects.
+PASS: production model-data preparation uses factor Year and preserves gas means
+Warning in checkConv(attr(opt, "derivs"), opt$par, ctrl = control$checkConv,  :
+  unable to evaluate scaled gradient
+Warning in checkConv(attr(opt, "derivs"), opt$par, ctrl = control$checkConv,  :
+   Hessian is numerically singular: parameters are not uniquely determined
+Warning: Model failed to converge with 1 negative eigenvalue: -1.5e-08
+boundary (singular) fit: see help('isSingular')
+Warning in as_lmerModLT(model, devfun, tol = tol) :
+  Model may not have converged with 1 eigenvalue close to zero: -4.0e-19
+Note: adjust = "tukey" was changed to "sidak"
+because "tukey" is only appropriate for one set of pairwise comparisons
+Note: adjust = "tukey" was changed to "sidak"
+because "tukey" is only appropriate for one set of pairwise comparisons
+null device 
+          1 
+PASS: two synthetic Gaussian LMMs, KR inference, 60 EMM rows, n, letters,
+ fixed-effect P values, period comparisons, Shapiro diagnostics and plot rendering
+PASS: registered equivalent model request reuses existing fitted model
+PASS: exactly two registered primary fits; Year/Pasture groups only; no fixed-year fits or sensitivity-test rows
+NOTE: synthetic data only; no actual study model or final export was executed

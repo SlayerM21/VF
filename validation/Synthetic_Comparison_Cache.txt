@@ -1,0 +1,4 @@
+Loading required namespace: lmerTest
+Note: adjust = "tukey" was changed to "sidak"
+because "tukey" is only appropriate for one set of pairwise comparisons
+PASS retained-period comparison cache returns identical object without a second entry

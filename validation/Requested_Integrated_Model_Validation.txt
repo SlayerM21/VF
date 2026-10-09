@@ -1,0 +1,69 @@
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+boundary (singular) fit: see help('isSingular')
+Note: adjust = "tukey" was changed to "sidak"
+because "tukey" is only appropriate for one set of pairwise comparisons
+boundary (singular) fit: see help('isSingular')
+Note: adjust = "tukey" was changed to "sidak"
+because "tukey" is only appropriate for one set of pairwise comparisons
+PASS: fabricated raw-endpoint ADG and ANCOVA questions fit Gaussian LMMs; EMMs, n, letters, tests and diagnostics created.
+PASS: requested S and C formulas retain Year/Pasture only; unset optional gas thresholds remain pending.
+boundary (singular) fit: see help('isSingular')
+NOTE: Results may be misleading due to involvement in interactions
+Note: adjust = "tukey" was changed to "sidak"
+because "tukey" is only appropriate for one set of pairwise comparisons
+boundary (singular) fit: see help('isSingular')
+NOTE: Results may be misleading due to involvement in interactions
+Note: adjust = "tukey" was changed to "sidak"
+because "tukey" is only appropriate for one set of pairwise comparisons
+PASS: fabricated qualifying CH4/CO2 models use requested Q formula and retain correct distinct animal/model-row counts after missing response and Year exclusions.
+boundary (singular) fit: see help('isSingular')
+Note: adjust = "tukey" was changed to "sidak"
+because "tukey" is only appropriate for one set of pairwise comparisons
+boundary (singular) fit: see help('isSingular')
+Note: adjust = "tukey" was changed to "sidak"
+because "tukey" is only appropriate for one set of pairwise comparisons
+boundary (singular) fit: see help('isSingular')
+Note: adjust = "tukey" was changed to "sidak"
+because "tukey" is only appropriate for one set of pairwise comparisons
+
+
+|Model                                                           |Response               |Formula                                                                           |Grid_Map             |Time_scale | N_rows| N_pastures| N_years|Status                                                                                    |Singular |Inference_note                                                          |
+|:---------------------------------------------------------------|:----------------------|:---------------------------------------------------------------------------------|:--------------------|:----------|------:|----------:|-------:|:-----------------------------------------------------------------------------------------|:--------|:-----------------------------------------------------------------------|
+|two_scale__RGP__ALL_PASTURE_GRAZING__Percent_pasture_active     |Percent_pasture_active |Percent_pasture_active ~ TRT * SR * RGP + (1 &#124; Year) + (1 &#124; Pasture_ID) |ALL_PASTURE_GRAZING  |RGP        |     90|          6|       3|Ready                                                                                     |TRUE     |Conditional site comparison; repeated periods do not replicate TRT x SR |
+|two_scale__RGP__ALL_PASTURE_GRAZING__Gain_kg_per_active_ha      |Gain_kg_per_active_ha  |NA                                                                                |ALL_PASTURE_GRAZING  |RGP        |     90|          6|       3|Consolidated: same rows, numerator and denominator as final period LWG ratio              |NA       |Reuse the authoritative Section 9.10 period land-ratio LMM              |
+|two_scale__RGP__INSIDE_RGP_GRAZING__Percent_pasture_active      |Percent_pasture_active |Percent_pasture_active ~ TRT * SR * RGP + (1 &#124; Year) + (1 &#124; Pasture_ID) |INSIDE_RGP_GRAZING   |RGP        |     90|          6|       3|Ready                                                                                     |TRUE     |Conditional site comparison; repeated periods do not replicate TRT x SR |
+|two_scale__RGP__INSIDE_RGP_GRAZING__Gain_kg_per_active_ha       |Gain_kg_per_active_ha  |NA                                                                                |INSIDE_RGP_GRAZING   |RGP        |     90|          6|       3|Consolidated: same rows, numerator and denominator as final period LWG ratio              |NA       |Reuse the authoritative Section 9.10 period land-ratio LMM              |
+|two_scale__Season__WHOLE_SEASON_GRAZING__Percent_pasture_active |Percent_pasture_active |Percent_pasture_active ~ TRT * SR + (1 &#124; Pasture_ID) + (1 &#124; Year)       |WHOLE_SEASON_GRAZING |Season     |     18|          6|       3|Ready                                                                                     |TRUE     |Conditional site comparison; repeated periods do not replicate TRT x SR |
+|two_scale__Season__WHOLE_SEASON_GRAZING__Gain_kg_per_active_ha  |Gain_kg_per_active_ha  |NA                                                                                |WHOLE_SEASON_GRAZING |Season     |     18|          6|       3|Consolidated: both endpoint gain rules agree; final whole-season LWG ratio owns inference |NA       |Reuse the authoritative Section 9.10 seasonal land-ratio LMM            |
+PASS: fabricated percent-use models run for two period grids and one independent seasonal grid, while identical gain questions are consolidated.
+boundary (singular) fit: see help('isSingular')
+boundary (singular) fit: see help('isSingular')
+Note: adjust = "tukey" was changed to "sidak"
+because "tukey" is only appropriate for one set of pairwise comparisons
+boundary (singular) fit: see help('isSingular')
+boundary (singular) fit: see help('isSingular')
+boundary (singular) fit: see help('isSingular')
+Note: adjust = "tukey" was changed to "sidak"
+because "tukey" is only appropriate for one set of pairwise comparisons
+
+
+|Model                                                                                           |Response               |Formula                                                                           |Grid_Map             |Time_scale | N_rows| N_pastures| N_years|Status                                                                       |Singular |Inference_note                                                          |
+|:-----------------------------------------------------------------------------------------------|:----------------------|:---------------------------------------------------------------------------------|:--------------------|:----------|------:|----------:|-------:|:----------------------------------------------------------------------------|:--------|:-----------------------------------------------------------------------|
+|two_scale__RGP__ALL_PASTURE_GRAZING__Percent_pasture_active                                     |Percent_pasture_active |Percent_pasture_active ~ TRT * SR * RGP + (1 &#124; Year) + (1 &#124; Pasture_ID) |ALL_PASTURE_GRAZING  |RGP        |     90|          6|       3|Ready                                                                        |TRUE     |Conditional site comparison; repeated periods do not replicate TRT x SR |
+|two_scale__RGP__ALL_PASTURE_GRAZING__Gain_kg_per_active_ha__synchronized_window_sensitivity     |Gain_kg_per_active_ha  |Gain_kg_per_active_ha ~ TRT * SR * RGP + (1 &#124; Year) + (1 &#124; Pasture_ID)  |ALL_PASTURE_GRAZING  |RGP        |     89|          6|       3|Ready                                                                        |TRUE     |Conditional site comparison; repeated periods do not replicate TRT x SR |
+|two_scale__RGP__INSIDE_RGP_GRAZING__Percent_pasture_active                                      |Percent_pasture_active |Percent_pasture_active ~ TRT * SR * RGP + (1 &#124; Year) + (1 &#124; Pasture_ID) |INSIDE_RGP_GRAZING   |RGP        |     90|          6|       3|Ready                                                                        |TRUE     |Conditional site comparison; repeated periods do not replicate TRT x SR |
+|two_scale__RGP__INSIDE_RGP_GRAZING__Gain_kg_per_active_ha                                       |Gain_kg_per_active_ha  |NA                                                                                |INSIDE_RGP_GRAZING   |RGP        |     90|          6|       3|Consolidated: same rows, numerator and denominator as final period LWG ratio |NA       |Reuse the authoritative Section 9.10 period land-ratio LMM              |
+|two_scale__Season__WHOLE_SEASON_GRAZING__Percent_pasture_active                                 |Percent_pasture_active |Percent_pasture_active ~ TRT * SR + (1 &#124; Pasture_ID) + (1 &#124; Year)       |WHOLE_SEASON_GRAZING |Season     |     18|          6|       3|Ready                                                                        |TRUE     |Conditional site comparison; repeated periods do not replicate TRT x SR |
+|two_scale__Season__WHOLE_SEASON_GRAZING__Gain_kg_per_active_ha__contiguous_endpoint_sensitivity |Gain_kg_per_active_ha  |Gain_kg_per_active_ha ~ TRT * SR + (1 &#124; Pasture_ID) + (1 &#124; Year)        |WHOLE_SEASON_GRAZING |Season     |     18|          6|       3|Ready                                                                        |TRUE     |Conditional site comparison; repeated periods do not replicate TRT x SR |
+PASS: genuinely different period and seasonal gain sensitivities retain requested P/S formulas; equivalent period gain remains consolidated.
+Actual research input data and statistical estimates were not executed.

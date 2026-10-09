@@ -1,0 +1,5 @@
+"model","identical_fit_arguments","formula"
+"mod.Monthly_DDT_filtered",TRUE,"mean_DDT_day ~ TRT * SR + (1 | Year) + (1 | Pasture)"
+"mod.Monthly_Grazing",TRUE,"mean_hours ~ TRT * SR + (1 | Year) + (1 | Pasture)"
+"mod.Monthly_Resting",TRUE,"mean_hours ~ TRT * SR + (1 | Year) + (1 | Pasture)"
+"mod.Monthly_Traveling",TRUE,"mean_hours ~ TRT * SR + (1 | Year) + (1 | Pasture)"

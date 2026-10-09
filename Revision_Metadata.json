@@ -1,0 +1,16 @@
+{
+  "source_file": "AFRI_CHAPTER_2_Master_Code_Year_Random.Rmd",
+  "source_sha256": "80d420e290269268841b0348a8c53a2c1292d96461e54e08763a8161681f11cf",
+  "revised_file": "AFRI_CHAPTER_2_Optimized.Rmd",
+  "revised_sha256": "59773d517aa41fad133d2f325d4a88941396c95b12ef1c3c0515d67626ed68c8",
+  "source_lines": 33602,
+  "revised_lines": 21718,
+  "audit_rows": 197,
+  "response_specifications": 50,
+  "study_execution": "Not run: original HMM, BW, GreenFeed and GIS inputs unavailable",
+  "r_chunks_parsed": 206,
+  "requested_model_structure": "Random Year and physical Pasture only; period fixed effects TRT*SR*Period; ANCOVA retains IBW",
+  "global_greenfeed_name": "Global GreenFeed",
+  "global_greenfeed_models": 2,
+  "complete_model_catalog_entries": 62
+}

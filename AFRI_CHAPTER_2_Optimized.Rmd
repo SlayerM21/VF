@@ -13914,7 +13914,7 @@ greenfeed_rotation_schedule <- rotation_schedule %>%
     Period_Label = paste0("RGP", Period_ID)
   ) %>%
   filter(Period_Start <= Period_End) %>%
-  select(Year, Period_ID, Period_Start, Period_End, Period_Days,
+  dplyr::select(Year, Period_ID, Period_Start, Period_End, Period_Days,
          RotationPeriod, Period_Label, P2_Rotation, P3_Rotation, P4_Rotation)
 
 # Exact endpoint check against the GreenFeed estimand in the supplied code.
@@ -14716,7 +14716,7 @@ gf_rotation_reporting_table <- function(gas, model_data, inference) {
   means <- rotation_emm_to_df(inference$emm)
   letters <- as.data.frame(inference$cld)
   if (all(c("TRT", "SR", "RotationPeriod", ".group") %in% names(letters))) {
-    means <- left_join(means, select(letters, TRT, SR, RotationPeriod, .group),
+    means <- left_join(means, dplyr::select(letters, TRT, SR, RotationPeriod, .group),
                        by = c("TRT", "SR", "RotationPeriod"))
   } else {
     means$.group <- NA_character_

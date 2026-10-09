@@ -1,0 +1,28 @@
+GreenFeed select() namespace correction
+
+Scope: two call-site namespace qualifiers only. Source dates, scientific
+transformations, model specifications and export expressions otherwise unchanged.
+
+Executed with R 4.5.0, attaching dplyr before multcomp. multcomp attaches MASS;
+find("select") then resolves first to package:MASS.
+
+Observed output from the successful targeted R run:
+PASS: actual setup dependency order reproduces MASS select masking.
+PASS: previous schedule call reproduces the reported unused-arguments error.
+PASS: corrected schedule executes with MASS attached and exactly preserves all 15 rows, dates, rotations, factors and assignments.
+PASS: date classifier is identical before/after the namespace fix.
+PASS: previous post-hoc letter selection reproduces the same masking failure.
+PASS: corrected reporting function executes with MASS attached and preserves all 30 synthetic rows, n, EMMs, SEs, P-values and letters.
+NOTE: schedule and fabricated reporting fixtures only; no study model, export or full knit was executed.
+
+Independent full-document parsing rerun:
+R chunks: 206
+Chunks parsed: 206/206
+Duplicate explicit labels: none
+YAML: PASS
+knitr purl: PASS
+Extracted R parse: PASS
+
+Static comparison confirmed that the complete Rmd differs from the previous
+published Rmd at only the two corrected select() calls, and that no unqualified
+select() calls remain. Study-data execution remains unverified.

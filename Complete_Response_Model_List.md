@@ -2,7 +2,7 @@
 
 Extracted from the delivered AFRI_CHAPTER_2_Optimized.Rmd after applying the user-requested Year/Pasture model specifications. This catalog contains 50 final reporting entries and 12 additional source/conditional entries. Reused source entries do not represent additional fits. These are code specifications, not executed study-data results.
 
-Rmd SHA256: `59773d517aa41fad133d2f325d4a88941396c95b12ef1c3c0515d67626ed68c8`.
+Rmd SHA256: `b73648380e2d4ef588b3a65e6230e8386a896aedb751c4c4e0e4e501db233626`.
 
 ## Model codes
 

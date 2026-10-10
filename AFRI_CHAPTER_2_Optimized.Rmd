@@ -2407,8 +2407,6 @@ for (i in seq_len(nrow(map_period_index))) {
   }
   inside_ha <- sum(available$Cell_Area_ha[available$Active_Cell &
     available$Spatial_Status == "INSIDE_CURRENT_ROTATION"])
-  outside_ha <- sum(available$Cell_Area_ha[available$Active_Cell &
-    available$Spatial_Status == "OUTSIDE_ROTATION_WITHIN_PASTURE"])
   total_ha <- sum(all_pasture_grid$Pasture_Cell_ha[
     all_pasture_grid$Active_Cell_all])
   if (inside_ha > total_ha + 1e-5)
@@ -2443,14 +2441,10 @@ for (i in seq_len(nrow(map_period_index))) {
     Available_ha_rotation = rotation_ha,
     Available_Area_ha = rotation_ha,
     Active_ha_inside_rotation = inside_ha,
-    Active_ha_outside_rotation = if (is_vf) outside_ha else NA_real_,
     Total_active_ha_period = total_ha,
     Active_Area_ha = total_ha,
     Active_Area_percent = if (pasture_ha > 0) 100 * total_ha / pasture_ha else NA_real_,
     Percent_rotation_area_active = if (rotation_ha > 0) 100 * inside_ha / rotation_ha else NA_real_,
-    Percent_active_area_outside = if (is_vf &&
-      (inside_ha + outside_ha) > 0)
-      100 * outside_ha / (inside_ha + outside_ha) else NA_real_,
     Total_Grid_Cells = nrow(all_pasture_grid),
     Active_Grid_Cells = sum(all_pasture_grid$Active_Cell_all),
     Grazing_GPS_Points = nrow(pts),
@@ -2497,10 +2491,6 @@ active_area_summary <- dplyr::bind_rows(active_area_summary_list) %>%
     active_m2_all_pasture = active_ha_all_pasture * 10000,
     active_ha_inside_rgp = Active_ha_inside_rotation,
     active_m2_inside_rgp = active_ha_inside_rgp * 10000,
-    active_ha_outside_rgp = pmax(
-      0, active_ha_all_pasture - active_ha_inside_rgp
-    ),
-    active_m2_outside_rgp = active_ha_outside_rgp * 10000,
     total_rgp_area_ha = Available_ha_rotation,
     percent_rgp_actively_grazed = dplyr::if_else(
       is.finite(total_rgp_area_ha) & total_rgp_area_ha > 0,
@@ -3759,7 +3749,6 @@ gps_active_area_lookup <- active_area_summary %>% dplyr::transmute(
   Active_Hectares = active_ha_all_pasture,
   Active_Hectares_All_Pasture = active_ha_all_pasture,
   Active_Hectares_Inside_RGP = active_ha_inside_rgp,
-  Active_Hectares_Outside_RGP = active_ha_outside_rgp,
   Available_Hectares = Pasture_area_ha,
   RGP_Area_Hectares = total_rgp_area_ha,
   Active_Area_Percent = Active_Area_percent,
@@ -11075,14 +11064,6 @@ pasture_use_RGP_wide <- active_area_summary %>%
   ) %>%
   dplyr::mutate(
 
-    # Prevent tiny numerical differences from producing
-    # negative outside-RGP area.
-    active_ha_outside_rgp = pmax(
-      active_ha_all_pasture -
-        active_ha_inside_rgp,
-      0
-    ),
-
     pct_pasture_active_all = safe_percent(
       active_ha_all_pasture,
       Pasture_ha
@@ -15199,7 +15180,7 @@ if (nrow(gf_period_qualified)) {
       relationship = "many-to-one") %>%
     dplyr::left_join(active_area_summary %>%
       dplyr::select(Year, Pasture_ID, Rotation_Period,
-        Active_ha_inside_rotation, Active_ha_outside_rotation,
+        Active_ha_inside_rotation,
         Total_active_ha_period),
       by = c("Year", "Pasture_ID", "Rotation_Period"),
       relationship = "one-to-one") %>%
@@ -17276,10 +17257,6 @@ period_level_grazing_productivity <- active_area_summary |>
     active_ha_inside_rgp = active_ha_inside_rgp,
 
     active_m2_inside_rgp = active_m2_inside_rgp,
-
-    active_ha_outside_rgp = active_ha_outside_rgp,
-
-    active_m2_outside_rgp = active_m2_outside_rgp,
 
     percent_rgp_actively_grazed =
       percent_rgp_actively_grazed,
@@ -20028,7 +20005,6 @@ analysis_specs <- dplyr::bind_rows(
     Response = c(
       "active_ha_all_pasture",
       "active_ha_inside_rgp",
-      "active_ha_outside_rgp",
       "total_LWG_kg",
       "mean_RGP_ADG_kg_day",
       "CH4_g_animal_day",
@@ -20046,7 +20022,7 @@ analysis_specs <- dplyr::bind_rows(
     Unit = "pasture",
     Subject = NA_character_,
     Family_rule = c(
-      rep("gaussian", 15)
+      rep("gaussian", 14)
     )
   ),
   tibble::tibble(
@@ -20920,10 +20896,6 @@ afri_response_label_map <- tibble::tribble(
 
   "active_ha_inside_rgp",
   "Active area, inside-RGP grid (ha)",
-  2,
-
-  "active_ha_outside_rgp",
-  "Active area outside assigned RGP (ha)",
   2,
 
   "total_LWG_kg",

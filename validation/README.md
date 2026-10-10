@@ -1,3 +1,5 @@
+Current outside-RGP area removal checks are in Outside_RGP_Removal_Validation.txt. They validate 206 parsed chunks, unchanged retained specifications, publication filtering and catalog consistency. Earlier records below retain their original revision scope.
+
 # Validation evidence
 
 Current combined-gas removal records use the Combined_Gas_Removal_ prefix. They verify removal of exactly five response specifications and their two combined-total precursor calculations, preserving all surviving calculations, invalid-denominator/missing-data behavior, dataset keys, and model formulas. Model-specific fitting of the entire 45-specification study workflow has not been executed.

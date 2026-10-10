@@ -1,0 +1,20 @@
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+Parsed 206 R chunks from afri-before.Rmd 
+Parsed 206 R chunks from AFRI_CHAPTER_2_Optimized.Rmd 
+PASS: exactly one response removed; all 44 retained specifications identical
+PASS: removed response absent from publication label map
+PASS: removed area absent from period dataset builders and GPS area lookup
+PASS: stale outside-RGP model results excluded from publication reporting
+
+PASS: CSV model catalog, inventory, export audit and Word document omit the removed response.
+Scope: synthetic/static validation only; original research inputs are absent. Full knit and study models/exports not executed. Historical validation records refer to their recorded revisions.

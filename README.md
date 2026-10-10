@@ -28,3 +28,5 @@ The two-scale export fix is included in the main Rmd. Its exporter uses compact 
 The final three-grid map export fix is also included in the main Rmd. It saves the nine cached plots under `01_Grazing_Behavior_Spatial_Aera/04_Maps/Three_Grid_Metrics/{01_LWG,02_CH4,03_CO2}` using compact filenames, retaining full metric/grid IDs in the inventory. Both standalone repair scripts have been removed from this repository and the ZIP bundle.
 
 All 206 R chunks parsed, and targeted synthetic checks passed. Original research input datasets are not included; study-data model execution, research exports, and a full knit remain unverified. See the report for dependencies, input paths, remaining model limitations, and the precise validation scope.
+
+The active-area-outside-assigned-RGP response, its hectare/square-meter calculations and aliases, and its statistical model have been removed. The period model catalog now contains 44 reporting specifications (56 total catalog entries). Rerun in a fresh R session; previously exported files are not deleted.

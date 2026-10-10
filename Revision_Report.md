@@ -1,6 +1,6 @@
 # AFRI R Markdown revision report
 
-The delivery contains one complete document, `AFRI_CHAPTER_2_Optimized.Rmd`, with all runtime helpers embedded. It replaces the uploaded 33,602-line document with a 21,761-line workflow and retains 50 response specifications in the final statistical reporting layer. A response specification can reuse an earlier model; it does not imply another fitted model. No scientific results were invented, and the uploaded file was left unchanged.
+The delivery contains one complete document, `AFRI_CHAPTER_2_Optimized.Rmd`, with all runtime helpers embedded. It replaces the uploaded 33,602-line document with a 21,818-line workflow and retains 50 response specifications in the final statistical reporting layer. A response specification can reuse an earlier model; it does not imply another fitted model. No scientific results were invented, and the uploaded file was left unchanged.
 
 The latest revision applies the requested additive-period specifications and passed actual R parsing, static formula audits, and targeted synthetic execution of the current models and reporting functions. Records from the preceding interaction-model revision are identified separately as historical evidence. **A full knit, study-data model execution, and study export generation remain unverified because the original HMM, BW, GreenFeed, and GIS inputs were not supplied.** The document deliberately reports unavailable models or inference instead of silently switching families or modifying the requested formulas after a singular fit.
 
@@ -9,6 +9,16 @@ The latest revision applies the requested additive-period specifications and pas
 The protected setup attaches `multcomp` after `dplyr`; `multcomp` attaches MASS, whose `select(obj)` can mask `dplyr::select()`. Two GreenFeed calls were left unqualified: the rotation schedule column selection and the post-hoc grouping-letter selection in `gf_rotation_reporting_table()`. Both now explicitly use `dplyr::select()`. The setup chunk also binds `select <- dplyr::select` after all package attachments, so interactive unqualified calls resolve correctly. These corrections affect function lookup only; all scientific schedules, transformations, model specifications and export expressions otherwise remain identical.
 
 The package-order conflict and the previous errors were reproduced in R. With MASS attached, the corrected schedule retained exactly the same 15 rows, dates, rotation assignments and factors, and the corrected reporting function retained all 30 fabricated EMM/count/P-value/letter rows. Nine targeted checks passed, including the actual setup assignment and its ability to repair the previous interactive calls. All 206 R chunks, YAML, knitr purl and extracted R parsed again. All four protected model arguments and the 33/46 unchanged-chunk count were independently confirmed. See `validation/Select_Masking_Fix_Validation.txt`. No study model, study export or full knit was executed for this correction.
+
+## Two-scale model export connection correction
+
+The export correction changes two of the 206 R chunks; the other 204 are identical to the preceding GitHub revision. The affected unique-model fitting, inference and diagnostic-calculation block is identical. All 206 chunks, YAML, knitr purl and extracted R parsed successfully again, and all 62 catalog entries/66 formula fields are unchanged.
+
+The `unique-percent-use-and-endpoint-sensitivity-models` error `Error in file(con, "w") : cannot open the connection` occurs while opening an output file, rather than identifying a model-fitting failure. The former summary and diagnostic filenames embedded each complete model identifier; the previously supplied Windows project path made some destinations longer than the legacy Windows path limit. A missing or unwritable destination can produce the same error, so the corrected writers identify the exact failed destination instead of assuming one cause.
+
+The unique two-scale exporter now uses compact summary and diagnostic filenames, such as `rgp_all_gain_sync_summary.txt` and `season_whole_gain_end_resid.png`, and records their association with the full model identifiers in `Unique_percent_use_and_endpoint_model_audit.csv`. `two_scale_write_file()` creates and verifies the parent directory, verifies a nonempty saved file, and reports the destination, character count and underlying error. It explicitly identifies a Windows path reaching the usual 260-character limit. The complete model identifiers, in-memory fits, model archive keys, data, additive-period specifications and inference remain unchanged. Unique percent-use, synchronized-window and endpoint-sensitivity results remain under `05_Two_Scale_Analysis_maps`; no existing study folders or files are automatically deleted.
+
+`AFRI_Two_Scale_Export_Fix.R` is supplied so an active R session can save already-computed results without repeating data processing, model fitting or inference. Eight targeted portable writer checks passed using six cached synthetic models. On Linux, the corrected exporter created six summaries, 18 diagnostic PNGs, five CSVs and one model archive; the saved full model IDs and summary contents were preserved. The compact destinations calculated from the previously supplied Windows project path were 206–221 characters. These calculations do not establish successful Windows writes; actual Windows and study-data exports remain unverified. Evidence is in `validation/Two_Scale_Compact_Export_Checks.csv` and `validation/Two_Scale_Compact_Export_Validation.txt`.
 
 ## User-requested model specification update
 
@@ -34,6 +44,7 @@ Removing management-by-period interactions changes the fixed-effect assumptions 
 ## Files supplied
 
 - `AFRI_CHAPTER_2_Optimized.Rmd`: complete analysis, usable as a single RStudio document.
+- `AFRI_Two_Scale_Export_Fix.R`: export-only recovery for existing unique two-scale productivity results in an active R session; respects `export_results`.
 - `Analysis_Export_Audit.csv`: 197 detailed rows covering derived datasets, QC records, retained models, reporting views, figures, spatial outputs, and export ownership.
 - `Response_Model_Inventory.csv`: all 50 final reporting specifications, their data sources, scale, and observation unit.
 - `Complete_Response_Model_List.csv` and `.md`: all 62 reporting/source/conditional entries, with exact formulas, model-fitting/reporting datasets and model-reuse conditions.
@@ -175,6 +186,7 @@ The full 197-row CSV gives each source object and destination. `Preserved`, `Con
 | Full model catalog formula audit | 66/66 current static formula checks passed | All 62 full formulas and four conditional alternatives retain TRT × SR, additive Period/source alias where applicable, only Year/Pasture random intercepts and ANCOVA IBW, with no management-by-period interactions. Evidence: `validation/Additive_Period_Formula_Audit.csv`. |
 | R Markdown YAML and chunk labels | Passed current revision | Valid YAML and 206 uniquely labeled R chunks. |
 | Actual R parsing | Passed current revision | 206/206 chunks, including disabled chunks; knitr purl and complete extracted-R parsing. |
+| Two-scale summary and diagnostic file connections | 8/8 targeted synthetic checks passed | Six cached model summaries, 18 PNGs, five CSVs and one RDS written on Linux; full IDs, exact summary contents, repeat-safe audit joins and cached models preserved. Disabled and zero-fit exports, missing-parent and writer-error messages verified. Windows destination lengths calculated as 206–221 characters; actual Windows/study writes remain unverified. |
 | User-requested two-scale directory relocation | Prior seven runtime checks; current path audit passed | New root and five subfolders; disabled exports write nothing; fabricated CSV/figure/verified-map exports and RGP/final manifests use the new paths. That earlier directory-only revision changed one root assignment among 206 chunks. Runtime checks were performed on Linux; study GIS/data, full knit and actual Windows writes remain unverified. |
 | GreenFeed select masking correction | Prior nine targeted checks passed; correction retained | Actual multcomp/MASS package-order conflict and both prior errors reproduced; corrected 15-row schedule/date classifier and 30-row fabricated reporting table preserved. Delivered setup alias also restores both previous interactive calls. Namespace lookup only; protected models unchanged. |
 | Protected model argument comparison | Passed | All four reference formula/data/REML call arguments identical; 33/46 protected chunks text-identical. |
@@ -226,5 +238,13 @@ For an already-running session affected only by `select()` masking, run the foll
 ```r
 select <- dplyr::select
 ```
+
+For the two-scale productivity `file(con, "w")` export error, download `AFRI_Two_Scale_Export_Fix.R` beside the revised Rmd and run the following in the existing session:
+
+```r
+source("AFRI_Two_Scale_Export_Fix.R")
+```
+
+This script requires the already-computed productivity models, inference and diagnostic objects and only repeats their designated export operations. It does not repeat statistical analyses. If a failure still occurs, its message now identifies the exact destination, path length and filesystem error. A shorter project path or `params$output_dir` is necessary if the resulting Windows path still reaches the usual limit. Changing `params$output_dir` also requires rerunning the setup that establishes `master_output_root`; moving existing study files is not automatic.
 
 The two optional **animal-period two-scale** GreenFeed thresholds remain `null`. No prespecified rule was supplied. Threshold-dependent qualifying gas models are explicitly pending. This does **not** add a threshold to the Global pasture-period analysis; its existing valid-visit rules and aggregation remain. The separate Dressler whole-season 40-visit rule is preserved.

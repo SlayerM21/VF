@@ -1,0 +1,12 @@
+Two-scale export-only correction scope
+
+Previous revision: 5f5a27a
+Previous Rmd SHA256: c1e9b2e364ba3d9b31970a97f593900032ae2a4f0bf2f91fb51ca12e770ce096
+Current Rmd SHA256: 271e442f598c6db41c2d506ba65a6334f6fc7dabbf26e5a5093b9ab69c360fe0
+
+PASS: 204/206 R chunk bodies unchanged.
+PASS: two-scale-animal-audit changes file helpers only; unique-percent-use-and-endpoint-sensitivity-models changes the export tail/index only.
+PASS: entire unique-model fitting, inference and diagnostic computation prefix identical.
+PASS: 62-entry model/dataset CSV and Word catalog byte-identical to preceding revision.
+PASS: all required output roots remain; no existing study files/directories deleted.
+Current actual Windows/study model execution, study exports and full knit: NOT RUN.

@@ -1,0 +1,12 @@
+Loading required namespace: lmerTest
+PASS: Disabled exports create no output directory
+Full Windows paths: 206-221 characters; filename calculation only.
+PASS: All six unique IDs map to compact summary and diagnostic paths
+PASS: Missing parent directories are created; all six summaries and 18 PNGs export
+PASS: Each compact summary still matches its retained model
+PASS: Blocked parent reports precise destination and underlying failure
+PASS: Writer permission/failure details identify the exact target
+Two-scale exports completed using compact filenames. See Unique_percent_use_and_endpoint_model_audit.csv for the full model IDs and filenames.
+PASS: Export-only recovery works with cached models and a repeat-safe audit index
+PASS: No fitted models produces typed empty manifest and preserves status audit
+8  targeted checks passed. Linux synthetic exports only; Windows/study exports/full knit unverified.

@@ -21,8 +21,6 @@
   "two_scale_model_export_correction": {
     "scope": "Export filenames and writer diagnostics only; model identifiers, fits, data, additive formulas and inference preserved",
     "validation": "Passed: 8/8 targeted synthetic writer checks on Linux; all 206 R chunks/YAML/purl/extracted R parsed; actual Windows and study-data exports unverified",
-    "recovery": "Export-only script saves current-session results without refitting",
-    "recovery_script": "AFRI_Two_Scale_Export_Fix.R",
     "filename_mapping": "01_Tables/Unique_percent_use_and_endpoint_model_audit.csv",
     "synthetic_checks_passed": 8,
     "synthetic_output_files": {
@@ -37,13 +35,12 @@
     },
     "unchanged_r_chunks": 204,
     "changed_export_only_r_chunks": 2,
-    "evidence_scope_revision": "Prior export-only correction; unchanged functions retained in current removal/routing revision"
+    "evidence_scope_revision": "Prior export-only correction, including then-supplied script parity checks; built-in writers unchanged and historical records preserved",
+    "implementation": "Embedded in AFRI_CHAPTER_2_Optimized.Rmd chunk unique-percent-use-and-endpoint-sensitivity-models; standalone script removed from current delivery"
   },
   "three_grid_map_export_correction": {
     "scope": "Final map export directories, PNG filenames, and writer diagnostics only; nine cached plot objects, full inventory identifiers, scientific calculations, dimensions and resolution unchanged",
     "validation": "Passed: 12/12 current targeted synthetic map export checks on Linux and all 206 R chunks/YAML/purl/extracted R parsed; actual Windows and study-data exports unverified",
-    "recovery_script": "AFRI_Three_Grid_Map_Export_Fix.R",
-    "recovery": "Export-only script saves current-session map objects without rebuilding maps or refitting models",
     "output_root": "01_Grazing_Behavior_Spatial_Aera/04_Maps/Three_Grid_Metrics",
     "metric_directories": {
       "BW_LWG": "01_LWG",
@@ -99,7 +96,8 @@
     ],
     "windows_runtime_validation": "Guard conditions simulated on Linux; actual Windows writes not executed",
     "plot_preservation": "Cached scientific data, mappings, layers, labels, and export specifications preserved; normal ggplot rendering caches may be populated",
-    "evidence_scope_revision": "Prior export-only correction; unchanged functions retained in current removal/routing revision"
+    "evidence_scope_revision": "Prior export-only correction, including then-supplied script parity checks; built-in writers unchanged and historical records preserved",
+    "implementation": "Embedded in AFRI_CHAPTER_2_Optimized.Rmd chunk final-three-grid-map-package; standalone script removed from current delivery"
   },
   "combined_gas_removal": {
     "removed_response_specifications": 5,
@@ -174,12 +172,23 @@
     "total_chunks": 206,
     "intentionally_changed_chunks": 7,
     "removed_calculation_response_identifiers_absent": 7,
-    "compact_recovery_scripts": "Both byte-identical to preceding published revision",
     "evidence": [
       "validation/Combined_Removal_Workbook_Chunk_Scope.csv",
       "validation/Combined_Removal_Workbook_Scope.txt"
     ],
     "prior_commit": "d3b29e8ceace042f14d2654fd61624fae9163f8b",
-    "execution_scope": "Static comparison; no study models/exports/full knit"
+    "execution_scope": "Static comparison; no study models/exports/full knit",
+    "historical_recovery_script_comparison": "Both then-supplied scripts were byte-identical during the combined-gas/workbook revision; standalone files are now removed"
+  },
+  "standalone_repair_script_removal": {
+    "removed_delivery_files": [
+      "AFRI_Two_Scale_Export_Fix.R",
+      "AFRI_Three_Grid_Map_Export_Fix.R"
+    ],
+    "reason": "User requested removal because both fixes are already integrated into the complete Rmd",
+    "scope": "Packaging/documentation only; main Rmd, Word, statistical models, datasets and calculations unchanged",
+    "main_rmd_sha256": "d127ebcff71e5af19ae999eb60af8d1225a142ea90cca92fffc8d5682fcdac13",
+    "word_sha256": "6fca7a50101ac2bef634c5132ac662ae9a06e498c9dd7b0b1f0580789fe4bea2",
+    "historical_validation": "Preserved unchanged with original scope; no new study execution claimed"
   }
 }

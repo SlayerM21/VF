@@ -5,8 +5,6 @@ The complete revised R Markdown and supporting records are available individuall
 The current revision removes the requested combined CH4 + CO2 calculations and models. Individual CH4 and CO2 analyses remain. The statistical workbook starts with `Table_1_Grazing_Behaviors`; all former `ShrunkBW_Season` variables are in `Table2`, and the four season-total land responses are in `WholeSeason_Additional`. The separate `ShrunkBW_Season` sheet and standalone Table 1 workbook writer are removed. Existing result files on disk are not automatically deleted.
 
 - [Download the complete bundle](AFRI_Revision_Bundle.zip)
-- [Two-scale export repair for an active R session](AFRI_Two_Scale_Export_Fix.R)
-- [Final three-grid map export repair](AFRI_Three_Grid_Map_Export_Fix.R)
 - [Complete R Markdown workflow](AFRI_CHAPTER_2_Optimized.Rmd)
 - [Download the Word variable/model/dataset document](AFRI_Variables_Models_and_Datasets.docx)
 - [Response variables and exact model formulas](Complete_Response_Model_List.md)
@@ -25,8 +23,8 @@ When applying the additive-period model specifications, start a fresh R session 
 
 For the combined-gas removal and workbook reorganization, use the complete updated Rmd in a fresh R session so the integrated datasets and model lists contain only the retained responses. The surviving model formulas are unchanged. Publication chunks reuse the retained results; their exports also filter obsolete response records from older session objects.
 
-For `cannot open the connection` in the unique percent-use/endpoint chunk, the corrected exporter uses compact summary/diagnostic filenames and includes full model IDs in its audit. Save `AFRI_Two_Scale_Export_Fix.R` beside the Rmd and run `source("AFRI_Two_Scale_Export_Fix.R")` in the session containing the existing results. This repair saves cached results and does not require refitting. Eight targeted export checks passed; actual Windows writes remain unverified.
+The two-scale export fix is included in the main Rmd. Its exporter uses compact summary/diagnostic filenames and includes full model IDs in its audit. Eight targeted export checks passed; actual Windows writes remain unverified.
 
-For the final three-grid map path error, save `AFRI_Three_Grid_Map_Export_Fix.R` beside the Rmd and run `source("AFRI_Three_Grid_Map_Export_Fix.R")` in the current session. It saves the nine cached plots under `01_Grazing_Behavior_Spatial_Aera/04_Maps/Three_Grid_Metrics/{01_LWG,02_CH4,03_CO2}` using compact filenames, retaining full metric/grid IDs in the inventory.
+The final three-grid map export fix is also included in the main Rmd. It saves the nine cached plots under `01_Grazing_Behavior_Spatial_Aera/04_Maps/Three_Grid_Metrics/{01_LWG,02_CH4,03_CO2}` using compact filenames, retaining full metric/grid IDs in the inventory. Both standalone repair scripts have been removed from this repository and the ZIP bundle.
 
 All 206 R chunks parsed, and targeted synthetic checks passed. Original research input datasets are not included; study-data model execution, research exports, and a full knit remain unverified. See the report for dependencies, input paths, remaining model limitations, and the precise validation scope.

@@ -4711,12 +4711,13 @@ message(
 
 ### 5.2 Save Analysis Tables
 
-Derived datasets are written to CSV. The `01_Tables` folder also receives the
-publication-style `Table_1_Grazing_Behaviors` table. The main table reports the
+Derived datasets are written to CSV. The publication-style
+`Table_1_Grazing_Behaviors` table is retained here for the first worksheet of
+`06_Statistical_Analysis/01_Tables/AFRI_Statistical_Results.xlsx`. It reports the
 estimated marginal mean (EMM) ± SE for each Treatment x Stocking Rate
 combination, Tukey compact-letter post hoc groups, and Type III P-values for
-TRT, SR, and TRT x SR. A second worksheet keeps the EMM and post hoc letter
-results in long format for auditing.
+TRT, SR, and TRT x SR. The same workbook retains the cached numerical EMMs,
+post hoc letters, comparisons, and complete reference ANOVA results for auditing.
 
 ```{r hmm-export-analysis-tables}
 # Every object below is defined in Sections 1-4. No weekly table objects are
@@ -4957,7 +4958,7 @@ if (export_results) {
   dir.create(output_dirs$tables, recursive = TRUE, showWarnings = FALSE)
   expected_table_names <- names(derived_tables)
   message("Section 5.2: exporting ", length(expected_table_names),
-          " upstream-derived datasets plus Table 1 and inferential tables.")
+          " upstream-derived datasets; Table 1 joins the final statistical workbook.")
   for (table_name in names(derived_tables)) {
     this_table <- derived_tables[[table_name]]
     if (!is.data.frame(this_table) && !inherits(this_table, "sf")) {
@@ -4987,156 +4988,9 @@ if (export_results) {
     file.path(output_dirs$tables, "Exported_Datasets_Inventory.csv")
   )
 
-  # Publication-style Excel workbook.
-  table1_wb <- openxlsx::createWorkbook()
-
-  openxlsx::addWorksheet(
-    table1_wb,
-    "Table_1_Grazing_Behaviors"
-  )
-  openxlsx::writeData(
-    table1_wb,
-    "Table_1_Grazing_Behaviors",
-    Table_1_Grazing_Behaviors,
-    keepNA = TRUE
-  )
-
-  header_style <- openxlsx::createStyle(
-    textDecoration = "bold",
-    halign = "center",
-    valign = "center",
-    wrapText = TRUE,
-    border = c("top", "bottom", "left", "right")
-  )
-
-  body_style <- openxlsx::createStyle(
-    valign = "center",
-    wrapText = TRUE,
-    border = c("top", "bottom", "left", "right")
-  )
-
-  openxlsx::addStyle(
-    table1_wb,
-    "Table_1_Grazing_Behaviors",
-    header_style,
-    rows = 1,
-    cols = seq_len(ncol(Table_1_Grazing_Behaviors)),
-    gridExpand = TRUE,
-    stack = TRUE
-  )
-
-  if (nrow(Table_1_Grazing_Behaviors) > 0L) {
-    openxlsx::addStyle(
-      table1_wb,
-      "Table_1_Grazing_Behaviors",
-      body_style,
-      rows = 2:(nrow(Table_1_Grazing_Behaviors) + 1L),
-      cols = seq_len(ncol(Table_1_Grazing_Behaviors)),
-      gridExpand = TRUE,
-      stack = TRUE
-    )
-  }
-
-  openxlsx::setColWidths(
-    table1_wb,
-    "Table_1_Grazing_Behaviors",
-    cols = 1,
-    widths = 34
-  )
-  openxlsx::setColWidths(
-    table1_wb,
-    "Table_1_Grazing_Behaviors",
-    cols = 2,
-    widths = 9
-  )
-  openxlsx::setColWidths(
-    table1_wb,
-    "Table_1_Grazing_Behaviors",
-    cols = 3:8,
-    widths = 22
-  )
-  openxlsx::setColWidths(
-    table1_wb,
-    "Table_1_Grazing_Behaviors",
-    cols = 9:11,
-    widths = 13
-  )
-  openxlsx::freezePane(
-    table1_wb,
-    "Table_1_Grazing_Behaviors",
-    firstRow = TRUE,
-    firstCol = TRUE
-  )
-
-  openxlsx::addWorksheet(
-    table1_wb,
-    "EMM_PostHoc"
-  )
-  openxlsx::writeData(
-    table1_wb,
-    "EMM_PostHoc",
-    Table_1_Grazing_Behaviors_EMM_PostHoc,
-    keepNA = TRUE
-  )
-  openxlsx::addStyle(
-    table1_wb,
-    "EMM_PostHoc",
-    header_style,
-    rows = 1,
-    cols = seq_len(ncol(Table_1_Grazing_Behaviors_EMM_PostHoc)),
-    gridExpand = TRUE,
-    stack = TRUE
-  )
-  openxlsx::setColWidths(
-    table1_wb,
-    "EMM_PostHoc",
-    cols = seq_len(ncol(Table_1_Grazing_Behaviors_EMM_PostHoc)),
-    widths = "auto"
-  )
-  openxlsx::freezePane(
-    table1_wb,
-    "EMM_PostHoc",
-    firstRow = TRUE
-  )
-
-  openxlsx::addWorksheet(
-    table1_wb,
-    "Notes"
-  )
-  openxlsx::writeData(
-    table1_wb,
-    "Notes",
-    data.frame(
-      Note = c(
-        "Main table values are estimated marginal means (EMM) ± SE.",
-        "Post hoc letters are Tukey-adjusted compact-letter groups across the six TRT x SR EMMs within each variable.",
-        "Means that do not share a letter differ at alpha = 0.05.",
-        "P-values are Type III tests from car::Anova(model, type = 3)."
-      )
-    )
-  )
-  openxlsx::setColWidths(
-    table1_wb,
-    "Notes",
-    cols = 1,
-    widths = 110
-  )
-
-  # Retain the unique omnibus sheets in the same Table 1 workbook.
-  for (sheet in setdiff(names(inferential_tables),
-                       c("Table_1_Grazing_Behaviors", "Table_1_EMM_PostHoc"))) {
-    openxlsx::addWorksheet(table1_wb, sheet)
-    openxlsx::writeData(table1_wb, sheet, inferential_tables[[sheet]], keepNA = TRUE)
-  }
-
-  openxlsx::saveWorkbook(
-    table1_wb,
-    file = file.path(
-      output_dirs$tables,
-      "Table_1_Grazing_Behaviors.xlsx"
-    ),
-    overwrite = TRUE
-  )
+  # Table 1 and its cached inference are exported once in the final
+  # AFRI_Statistical_Results workbook; retain the protected objects in memory.
+  message("Table_1_Grazing_Behaviors retained for the first sheet of AFRI_Statistical_Results.xlsx.")
 
 
 }
@@ -17667,27 +17521,6 @@ period_level_grazing_productivity <- active_area_summary |>
 
 
     # ========================================================
-    # TOTAL GHG DURING RGP
-    # ========================================================
-
-    GHG_g_total_period_est =
-      dplyr::if_else(
-
-        is.finite(
-          CH4_g_total_period_est
-        ) &
-          is.finite(
-            CO2_g_total_period_est
-          ),
-
-        CH4_g_total_period_est +
-          CO2_g_total_period_est,
-
-        NA_real_
-      ),
-
-
-    # ========================================================
     # LWG PER ACTIVE HECTARE
     # ========================================================
 
@@ -17742,24 +17575,6 @@ period_level_grazing_productivity <- active_area_summary |>
 
 
     # ========================================================
-    # TOTAL GHG PER ACTIVE HECTARE
-    # ========================================================
-
-    GHG_g_per_active_ha_all_pasture =
-      rev_safe_ratio(
-        GHG_g_total_period_est,
-        active_ha_all_pasture
-      ),
-
-
-    GHG_g_per_active_ha_inside_rgp =
-      rev_safe_ratio(
-        GHG_g_total_period_est,
-        active_ha_inside_rgp
-      ),
-
-
-    # ========================================================
     # GAS PER KG LWG
     # ========================================================
 
@@ -17773,13 +17588,6 @@ period_level_grazing_productivity <- active_area_summary |>
     CO2_g_per_kg_LWG =
       rev_safe_ratio(
         CO2_g_total_period_est,
-        total_LWG_kg
-      ),
-
-
-    GHG_g_per_kg_LWG =
-      rev_safe_ratio(
-        GHG_g_total_period_est,
         total_LWG_kg
       )
   ) |>
@@ -18276,27 +18084,6 @@ whole_season_grazing_productivity <-
 
 
     # --------------------------------------------------------
-    # Total GHG
-    # --------------------------------------------------------
-
-    GHG_g_total_season_est =
-      dplyr::if_else(
-
-        is.finite(
-          CH4_g_total_season_est
-        ) &
-          is.finite(
-            CO2_g_total_season_est
-          ),
-
-        CH4_g_total_season_est +
-          CO2_g_total_season_est,
-
-        NA_real_
-      ),
-
-
-    # --------------------------------------------------------
     # LWG per active ha
     # --------------------------------------------------------
 
@@ -18325,17 +18112,6 @@ whole_season_grazing_productivity <-
     CO2_g_per_active_ha_whole_season =
       rev_safe_ratio(
         CO2_g_total_season_est,
-        active_ha_whole_season
-      ),
-
-
-    # --------------------------------------------------------
-    # Total GHG per active ha
-    # --------------------------------------------------------
-
-    GHG_g_per_active_ha_whole_season =
-      rev_safe_ratio(
-        GHG_g_total_season_est,
         active_ha_whole_season
       ),
 
@@ -18380,13 +18156,6 @@ whole_season_grazing_productivity <-
     CO2_g_per_kg_LWG_whole_season =
       rev_safe_ratio(
         CO2_g_total_season_est,
-        total_LWG_kg
-      ),
-
-
-    GHG_g_per_kg_LWG_whole_season =
-      rev_safe_ratio(
-        GHG_g_total_season_est,
         total_LWG_kg
       )
   ) |>
@@ -20270,20 +20039,14 @@ analysis_specs <- dplyr::bind_rows(
       "CH4_g_per_active_ha_inside_rgp",
       "CO2_g_per_active_ha_all_pasture",
       "CO2_g_per_active_ha_inside_rgp",
-      "GHG_g_per_active_ha_all_pasture",
-      "GHG_g_per_active_ha_inside_rgp",
       "CH4_g_per_kg_LWG",
-      "CO2_g_per_kg_LWG",
-      "GHG_g_per_kg_LWG"
+      "CO2_g_per_kg_LWG"
     ),
     Scale = "period",
     Unit = "pasture",
     Subject = NA_character_,
     Family_rule = c(
-      "gaussian", "gaussian", "gaussian",
-      "gaussian", "gaussian", "gaussian", "gaussian",
-      "gaussian", "gaussian",
-      rep("gaussian", 9)
+      rep("gaussian", 15)
     )
   ),
   tibble::tibble(
@@ -20300,18 +20063,14 @@ analysis_specs <- dplyr::bind_rows(
       "CH4_g_per_active_ha_day_whole_season",
       "CO2_g_per_active_ha_day_whole_season",
       "ADG_Land_kg_per_active_ha_day_whole_season",
-      "GHG_g_per_active_ha_whole_season",
       "CH4_g_per_kg_LWG_whole_season",
-      "CO2_g_per_kg_LWG_whole_season",
-      "GHG_g_per_kg_LWG_whole_season"
+      "CO2_g_per_kg_LWG_whole_season"
     ),
     Scale = "season",
     Unit = "pasture",
     Subject = NA_character_,
     Family_rule = c(
-      rep("gaussian", 6),
-      "gaussian", "gaussian", "gaussian",
-      rep("gaussian", 4)
+      rep("gaussian", 11)
     )
   ),
   tibble::tibble(
@@ -20558,7 +20317,9 @@ afri_fit_one_response <- function(spec_row, fits) {
     fit$data <- data
     fit$fitted_response <- fitted_response
     fit$source <- "Preserved Sections 1–5.5 reference model/results"
-    fit$export_owner <- "01_Grazing_Behavior_Spatial_Aera"
+    # The retained Table 1 occupies the first results-workbook sheet.
+    # Its reference-model RDS export remains owned by the original behavior section.
+    fit$export_owner <- "06_Statistical_Analysis/01_Tables/AFRI_Statistical_Results.xlsx"
     result <- table1_results[[statistical_reference_labels[[response]]]]
     if (is.null(result)) stop("Missing retained Table 1 result for ", response)
     fit$inference <- list(emmeans = result$emm_posthoc, cld = result$emm_posthoc,
@@ -21100,7 +20861,10 @@ non-estimable results remain missing; no statistical numbers are fabricated.
 This layer formats the retained Gaussian mixed-model results. It does not fit
 models, calculate EMMs, repeat post-hoc tests, or read exported files. The
 behavior table and its model-specific sample sizes come directly from
-`Table_1_Grazing_Behaviors` in Section 5.2; that table is exported there once.
+`Table_1_Grazing_Behaviors` in Section 5.2; its retained presentation is the
+first worksheet of the final statistical workbook. Seasonal individual-animal
+responses appear in `Table2`, while season-total land responses appear in
+`WholeSeason_Additional`. This routing does not change any fitted model.
 
 Management comparisons with one physical pasture per treatment × stocking-rate
 cell are conditional/exploratory. Numerical tests are retained with their
@@ -21202,24 +20966,12 @@ afri_response_label_map <- tibble::tribble(
   "CO2, inside-RGP grid (g/active ha)",
   0,
 
-  "GHG_g_per_active_ha_all_pasture",
-  "CH4 + CO2, all-pasture grid (g/active ha)",
-  0,
-
-  "GHG_g_per_active_ha_inside_rgp",
-  "CH4 + CO2, inside-RGP grid (g/active ha)",
-  0,
-
   "CH4_g_per_kg_LWG",
   "CH4 intensity (g/kg liveweight gain)",
   1,
 
   "CO2_g_per_kg_LWG",
   "CO2 intensity (g/kg liveweight gain)",
-  1,
-
-  "GHG_g_per_kg_LWG",
-  "CH4 + CO2 intensity (g/kg liveweight gain)",
   1,
 
   "mean_Shrunk_Initial_BW_kg",
@@ -21270,20 +21022,12 @@ afri_response_label_map <- tibble::tribble(
   "Whole-season CO2 (g/active ha)",
   0,
 
-  "GHG_g_per_active_ha_whole_season",
-  "Whole-season CH4 + CO2 (g/active ha)",
-  0,
-
   "CH4_g_per_kg_LWG_whole_season",
   "Whole-season CH4 intensity (g/kg liveweight gain)",
   1,
 
   "CO2_g_per_kg_LWG_whole_season",
   "Whole-season CO2 intensity (g/kg liveweight gain)",
-  1,
-
-  "GHG_g_per_kg_LWG_whole_season",
-  "Whole-season CH4 + CO2 intensity (g/kg liveweight gain)",
   1,
 
   "Whole_Season_CH4_g_day",
@@ -21358,34 +21102,71 @@ publication_optional <- function(name) {
   result <- get(name, inherits = TRUE)
   if (is.data.frame(result)) result else tibble::tibble()
 }
+publication_active_rows <- function(data) {
+  # Individual chunks may run in a session that still contains older results.
+  # Filter reporting copies to the current specifications without altering
+  # source objects or recalculating models, EMMs, tests or diagnostics.
+  if (!is.data.frame(data) || !"Response" %in% names(data)) return(data)
+  join_keys <- intersect(publication_keys, names(data))
+  active <- analysis_specs |>
+    dplyr::select(dplyr::all_of(join_keys)) |> dplyr::distinct()
+  dplyr::semi_join(data, active, by = join_keys)
+}
+publication_retained_emmeans <- publication_active_rows(analysis_emmeans)
+publication_retained_omnibus <- publication_active_rows(analysis_omnibus_tests)
+publication_retained_cld <- publication_active_rows(analysis_cld)
 
 publication_require(analysis_specs, c(publication_keys, "Scale", "Unit"), "Model specifications")
-publication_require(analysis_emmeans,
+publication_require(publication_retained_emmeans,
                     c(publication_keys, "TRT", "SR", "Period", "EMM", "SE", "N_obs"),
                     "Retained EMMs")
-publication_require(analysis_omnibus_tests,
+publication_require(publication_retained_omnibus,
                     c(publication_keys, "Term", "P_value_raw", "P_value", "Inference_note"),
                     "Retained omnibus tests")
 publication_unique(analysis_specs, publication_keys, "Model specifications")
-publication_unique(analysis_emmeans,
+publication_unique(publication_retained_emmeans,
                    c(publication_keys, "TRT", "SR", "Period"), "Retained EMMs")
-publication_unique(analysis_omnibus_tests,
+publication_unique(publication_retained_omnibus,
                    c(publication_keys, "Term"), "Retained omnibus tests")
 
+# Sheet placement is presentation metadata. Preserve the source analysis keys
+# so all means, tests, letters and model-specific n still join to the same fit.
+publication_season_land_responses <- c(
+  "CH4_g_per_active_ha_whole_season", "CO2_g_per_active_ha_whole_season",
+  "active_ha_whole_season", "LWG_kg_per_active_ha_whole_season"
+)
+publication_sheet_for <- function(table, response) {
+  dplyr::case_when(
+    table == "TABLE 1" ~ "Table_1_Grazing_Behaviors",
+    table == "TABLE 2" & response %in% publication_season_land_responses ~
+      "WholeSeason_Additional",
+    table %in% c("TABLE 2", "SHRUNK BW — SEASON") ~ "Table2",
+    table == "WHOLE-SEASON TABLES" ~ "WholeSeason_Additional",
+    table == "OTHER PERIOD TABLES" ~ "Pasture_RGP",
+    table == "SHRUNK BW — PERIOD" ~ "Animal_RGP",
+    TRUE ~ NA_character_
+  )
+}
 analysis_response_metadata <- analysis_specs |>
-  dplyr::mutate(Spec_Order = dplyr::row_number()) |>
-  dplyr::select(dplyr::all_of(publication_keys), Scale, Unit, Spec_Order) |>
+  dplyr::mutate(Spec_Order = dplyr::row_number(),
+                Publication_sheet = publication_sheet_for(Table, Response)) |>
+  dplyr::select(dplyr::all_of(publication_keys), Scale, Unit, Spec_Order, Publication_sheet) |>
   dplyr::left_join(afri_response_label_map, by = "Response") |>
   dplyr::mutate(Professional_Label = dplyr::coalesce(Professional_Label, Response),
                 Display_Digits = dplyr::coalesce(Display_Digits, 2))
+if (anyNA(analysis_response_metadata$Publication_sheet)) {
+  stop("A response has no publication worksheet: review the sheet-routing metadata.")
+}
+publication_unique(analysis_response_metadata,
+  c("Publication_sheet", "Professional_Label"), "Publication worksheet response labels")
 
 # Sample size belongs to the fitted model; never count EMM rows as observations.
-analysis_model_n <- analysis_emmeans |>
+analysis_model_n <- publication_retained_emmeans |>
   dplyr::select(dplyr::all_of(publication_keys), N_model = N_obs) |>
   dplyr::distinct()
 publication_unique(analysis_model_n, publication_keys, "Retained model sample sizes")
 
-professional_emm_long <- analysis_emmeans |>
+professional_emm_long <- publication_retained_emmeans |>
   dplyr::select(-dplyr::any_of(c("Professional_Label", "Display_Digits",
     "Cell", "PostHoc_Letter", "Grouping_scope", "EMM ± SE"))) |>
   dplyr::left_join(
@@ -21398,7 +21179,7 @@ professional_emm_long <- analysis_emmeans |>
 
 # The analysis layer owns which comparisons are scientifically justified.
 # Only use a unique retained CLD for the EMM cell; preserve its scope in the raw sheet.
-publication_cld <- analysis_cld
+publication_cld <- publication_retained_cld
 publication_cld_keys <- c(publication_keys, "TRT", "SR", "Period")
 publication_require(publication_cld,
                     c(publication_cld_keys, ".group", "Grouping_scope"), "Retained CLDs")
@@ -21421,17 +21202,19 @@ professional_emm_long <- professional_emm_long |>
                     paste0(" ", PostHoc_Letter), "")), "—")
   )
 
-professional_omnibus_long <- analysis_omnibus_tests |>
+professional_omnibus_long <- publication_retained_omnibus |>
   dplyr::mutate(Term = gsub("\\s+", "", Term),
                 Display_P = publication_p(P_value_raw),
                 Confirmatory_P = publication_p(P_value))
 publication_unique(professional_omnibus_long,
                    c(publication_keys, "Term"), "Formatted omnibus tests")
 
-publication_pvalue_block <- function(table_name, period = FALSE) {
+publication_pvalue_block <- function(metadata, period = FALSE) {
   terms <- if (period) publication_terms else publication_terms[1:3]
   data <- professional_omnibus_long |>
-    dplyr::filter(Table == table_name, Term %in% terms) |>
+    dplyr::semi_join(dplyr::select(metadata, dplyr::all_of(publication_keys)),
+                     by = publication_keys) |>
+    dplyr::filter(Term %in% terms) |>
     dplyr::select(dplyr::all_of(publication_keys), Term, Display_P) |>
     tidyr::pivot_wider(names_from = Term, values_from = Display_P, values_fill = "—")
   data <- publication_ensure(data, terms)
@@ -21446,20 +21229,22 @@ publication_inference <- professional_omnibus_long |>
     .groups = "drop"
   )
 
-publication_make_table <- function(table_name, period = FALSE) {
+publication_make_table <- function(worksheet_name, period = FALSE) {
   scale <- if (period) "period" else "season"
   meta <- analysis_response_metadata |>
-    dplyr::filter(Table == table_name, Scale == scale)
+    dplyr::filter(Publication_sheet == worksheet_name, Scale == scale)
   result_keys <- c(publication_keys, if (period) "Period")
   means <- professional_emm_long |>
-    dplyr::filter(Table == table_name, Scale == scale) |>
+    dplyr::semi_join(dplyr::select(meta, dplyr::all_of(publication_keys)),
+                     by = publication_keys) |>
+    dplyr::filter(Scale == scale) |>
     dplyr::select(dplyr::all_of(result_keys), Cell, `EMM ± SE`) |>
     tidyr::pivot_wider(names_from = Cell, values_from = `EMM ± SE`, values_fill = "—")
   means <- publication_ensure(means, publication_cells)
   data <- meta |>
     dplyr::left_join(means, by = publication_keys) |>
     dplyr::left_join(analysis_model_n, by = publication_keys) |>
-    dplyr::left_join(publication_pvalue_block(table_name, period), by = publication_keys) |>
+    dplyr::left_join(publication_pvalue_block(meta, period), by = publication_keys) |>
     dplyr::left_join(publication_inference, by = publication_keys)
   if (period) {
     data$Period <- factor(data$Period,
@@ -21483,11 +21268,10 @@ publication_make_table <- function(table_name, period = FALSE) {
 
 # First behavior/movement analysis is authoritative, including monthly model n.
 Table1_Professional <- Table_1_Grazing_Behaviors
-Table2_Professional <- publication_make_table("TABLE 2")
-Whole_Season_Additional_Professional <- publication_make_table("WHOLE-SEASON TABLES")
-Shrunk_BW_Season_Professional <- publication_make_table("SHRUNK BW — SEASON")
-Other_Period_EMMs_Professional <- publication_make_table("OTHER PERIOD TABLES", period = TRUE)
-Shrunk_BW_Period_EMMs_Professional <- publication_make_table("SHRUNK BW — PERIOD", period = TRUE)
+Table2_Professional <- publication_make_table("Table2")
+Whole_Season_Additional_Professional <- publication_make_table("WholeSeason_Additional")
+Other_Period_EMMs_Professional <- publication_make_table("Pasture_RGP", period = TRUE)
+Shrunk_BW_Period_EMMs_Professional <- publication_make_table("Animal_RGP", period = TRUE)
 
 # One coverage audit supersedes the response-specific repeat QC blocks.
 Professional_EMM_SE_Audit <- professional_emm_long |>
@@ -21548,24 +21332,29 @@ Professional_Table_Notes <- tibble::tibble(Note = c(
   "Management P-values displayed where pasture cells are unreplicated are exploratory/conditional. Their limitations are shown in the Inference column; raw and reporting P-values remain distinct in the omnibus audit.",
   "Different letter groups refer only to the retained comparison scope and multiplicity adjustment. The CLD sheet records Grouping_scope and CLD_Type. Shared letters do not establish equivalence.",
   "Random-effect structure follows the retained experimental-unit/repeated-measure model. Year is random where supported, with no fixed-effect P: Year reported.",
-  "Table_1_Grazing_Behaviors and its EMM/post-hoc results are preserved and exported in Section 5.2; they are not exported a second time here.",
+  "Table_1_Grazing_Behaviors preserves the Section 5.2 presentation and is the first worksheet of this workbook. Behavior EMMs and letters are included in the corresponding raw-result sheets; Table1_Reference_ANOVA preserves the full original reference Type III ANOVA rows and columns, including the intercept where present. Those behavior tests are not duplicated in Fixed_Effect_Omnibus, and no standalone Table 1 workbook is written.",
+  "Table2 combines whole-season animal-performance and individual-animal responses. WholeSeason_Additional includes whole-season CH4 and CO2 per active hectare, area grazed and LWG per active hectare, alongside the distinct daily land rates. Moving a response between sheets does not change its dataset, model, sample size or inference.",
   "Whole-season daily land rates use whole-season gas totals or chute-derived pasture LWG divided by unique active hectares and pasture-specific season days. Missing/zero denominators yield missing responses.",
   "Residual Shapiro–Wilk tests, residual variance checks, Q–Q plots, convergence and singular-fit flags are evaluated together; a single normality P-value does not determine model validity."
 ))
 
 publication_table_objects <- list(
+  Table_1_Grazing_Behaviors = Table1_Professional,
   Table2 = Table2_Professional,
   WholeSeason_Additional = Whole_Season_Additional_Professional,
-  ShrunkBW_Season = Shrunk_BW_Season_Professional,
   Pasture_RGP = Other_Period_EMMs_Professional,
   Animal_RGP = Shrunk_BW_Period_EMMs_Professional
 )
 publication_table_qc <- tibble::tibble(
   Table = names(publication_table_objects),
   Rows = vapply(publication_table_objects, nrow, integer(1)),
-  Has_required_columns = vapply(publication_table_objects, function(x)
-    all(c("Variable", "n", publication_cells,
-          "P: TRT", "P: SR", "P: TRT × SR", "Inference") %in% names(x)), logical(1)),
+  Has_required_columns = vapply(names(publication_table_objects), function(sheet) {
+    required <- c("Variable", "n", publication_cells, "P: TRT", "P: SR")
+    # Preserve the established behavior-table column names and presentation.
+    required <- c(required, if (sheet == "Table_1_Grazing_Behaviors")
+      "P: TRT * SR" else c("P: TRT × SR", "Observation_unit", "Inference"))
+    all(required %in% names(publication_table_objects[[sheet]]))
+  }, logical(1)),
   Has_fixed_Year_P = vapply(publication_table_objects,
                            function(x) "P: Year" %in% names(x), logical(1))
 )
@@ -21584,12 +21373,10 @@ numerator is chute-derived pasture liveweight gain, rather than smoothed
 individual-animal ADG.
 
 ```{r publication-display-tables, results='asis', message=FALSE, warning=FALSE}
-cat("\n\n**Grazing behavior and movement — retained Section 5.2 table**\n\n")
-print(knitr::kable(Table1_Professional))
 publication_titles <- c(
-  Table2 = "Whole-season animal performance, emissions, land productivity and active area",
-  WholeSeason_Additional = "Additional whole-season pasture responses",
-  ShrunkBW_Season = "Whole-season individual-animal responses",
+  Table_1_Grazing_Behaviors = "Grazing behavior and movement — retained Section 5.2 table",
+  Table2 = "Whole-season animal performance and individual-animal responses",
+  WholeSeason_Additional = "Whole-season pasture responses, active area and land productivity",
   Pasture_RGP = "Pasture responses by grazing period",
   Animal_RGP = "Repeated individual-animal responses by grazing period"
 )
@@ -21612,18 +21399,24 @@ exports in Section 9.11. Only nonempty sheets are written, and setting
 `params$export_results: false` prevents all writes in this layer.
 
 ```{r publication-statistical-exports, message=FALSE, warning=TRUE}
-# Behavior EMMs/tests/letters already have their designated Section 5.2 export.
-publication_nonbehavior <- function(data) {
-  if ("Table" %in% names(data)) dplyr::filter(data, Table != "TABLE 1") else data
-}
+# The final workbook owns the behavior table and its retained numerical results.
+# This is presentation/export reuse; no model or inference is recalculated here.
+publication_reference_anova <- dplyr::bind_rows(lapply(names(table1_results), function(variable_label) {
+  tab <- table1_results[[variable_label]]$anova
+  if (!is.data.frame(tab) || !nrow(tab)) return(NULL)
+  # Keep the original reference-test columns and every row, including intercept.
+  dplyr::bind_cols(tibble::tibble(Variable = rep(variable_label, nrow(tab))),
+                   tibble::as_tibble(tab))
+}))
 publication_model_metadata <- publication_optional("analysis_model_documentation")
 if (!nrow(publication_model_metadata)) publication_model_metadata <- analysis_model_summary
 professional_tables_excel <- c(publication_table_objects, list(
   Table_Notes = Professional_Table_Notes,
-  EMMs_Raw = publication_nonbehavior(analysis_emmeans),
-  Fixed_Effect_Omnibus = publication_nonbehavior(analysis_omnibus_tests),
-  Pairwise_Contrasts = publication_nonbehavior(analysis_contrasts),
-  CLD = publication_nonbehavior(analysis_cld),
+  EMMs_Raw = publication_retained_emmeans,
+  Fixed_Effect_Omnibus = dplyr::filter(publication_retained_omnibus, Table != "TABLE 1"),
+  Table1_Reference_ANOVA = publication_reference_anova,
+  Pairwise_Contrasts = analysis_contrasts,
+  CLD = publication_retained_cld,
   Model_Summary = publication_model_metadata,
   Model_Fit_Status = analysis_fit_status,
   Model_Diagnostics = analysis_model_diagnostics,
@@ -21646,6 +21439,9 @@ professional_tables_excel <- c(publication_table_objects, list(
   Daily_Rate_Table_QC = Daily_Land_Response_Flow_Audit,
   Table_Column_QC = publication_table_qc
 ))
+# Apply the same current-response filter to raw contrasts, model metadata,
+# diagnostics and every response-keyed QC sheet, including older session objects.
+professional_tables_excel <- lapply(professional_tables_excel, publication_active_rows)
 professional_export_catalog <- tibble::tibble(
   Worksheet = names(professional_tables_excel),
   Rows = vapply(professional_tables_excel, nrow, integer(1)),

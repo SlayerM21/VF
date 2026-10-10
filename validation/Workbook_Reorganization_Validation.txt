@@ -1,0 +1,16 @@
+Current workbook reorganization validation
+Source: AFRI_CHAPTER_2_Optimized.Rmd
+Rmd SHA256: d127ebcff71e5af19ae999eb60af8d1225a142ea90cca92fffc8d5682fcdac13
+Execution: actual final assembled publication expressions, using generated reporting fixtures and retained synthetic models/results.
+Scope: 8 successful checks; actual synthetic workbook saved and reopened with 31 nonempty sheets. No original study input, study workbook, or full-knit execution was performed.
+Original retained numerical inputs and fitted models were not altered or refitted by the reporting layer. Deliberately obsolete combined-gas rows were filtered only from reporting copies.
+
+PASS protected behavior presentation unchanged; first publication family literal Table_1_Grazing_Behaviors, five families and both column schemas validated.
+PASS four season-total land responses occur once in WholeSeason_Additional; all three former seasonal animal responses occur once in Table2; n, EMM/SE/letters are unchanged and combined-gas responses are absent.
+PASS reporting reused numerical inputs and fitted models without changing or refitting them; original source category and dataset keys remain intact.
+PASS disabled exports create no files; behavior EMMs/letters and full cached reference ANOVA columns/rows are preserved, with no duplicated behavior tests in the generic omnibus sheet.
+PASS deliberate obsolete combined-gas rows remain untouched in source memory but are excluded from every response-keyed final raw/model/diagnostic/QC sheet using current specification keys.
+Statistical tables and audits: /tmp/afri_reorganized_export_145ab2d06a785/01_Tables/AFRI_Statistical_Results.xlsx
+PASS actual synthetic workbook saved/reopened with 31 sheets; protected Table1 is first, worksheet relocation is correct, row/sample-size values survive export and no separate seasonal-animal/behavior workbook is written.
+PASS moved response preserves missing SE/P as an unavailable value, with no fabricated estimate or test.
+PASS typed empty model results preserve all requested response rows as missing, while the protected behavior presentation remains available.

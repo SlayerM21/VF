@@ -1,0 +1,10 @@
+Current Rmd SHA256: d127ebcff71e5af19ae999eb60af8d1225a142ea90cca92fffc8d5682fcdac13
+Word SHA256: 6fca7a50101ac2bef634c5132ac662ae9a06e498c9dd7b0b1f0580789fe4bea2
+Word file: AFRI_Variables_Models_and_Datasets.docx
+Size: 29,051 bytes
+PASS: DOCX ZIP integrity and python-docx reopening.
+PASS: 10 tables contain all 57 model/reporting/source/conditional entries and six descriptive rows; response multiplicities match the current catalog.
+PASS: Requested additive-period formulas, unchanged S/C structures, source dataset caveats, pending Q status, hyperlinks, and Unicode retained.
+PASS: All seven removed combined-gas calculation/response identifiers absent; independent catalogs and Word checks found no obsolete combined response entries.
+PASS: First Table_1_Grazing_Behaviors sheet, Table2/WholeSeason_Additional response transfers, removed ShrunkBW_Season sheet, and full Table1_Reference_ANOVA notes documented.
+Scope: generated-code model/dataset inventory only. Visual pagination was not rendered. Study models, estimates, tests and exports were not executed.

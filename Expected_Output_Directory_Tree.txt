@@ -1,6 +1,6 @@
 Chapter_2_Results/
 ├── 01_Grazing_Behavior_Spatial_Aera/
-│   ├── 01_Tables/                       # HMM data/QC, Table 1 XLSX, map inventory
+│   ├── 01_Tables/                       # HMM data/QC and map inventory
 │   ├── 02_Model_Results/                # four retained reference fits/summaries
 │   ├── 03_Figures/                      # reference EMM/diagnostic PNGs
 │   ├── 04_Maps/
@@ -38,7 +38,7 @@ Chapter_2_Results/
 │   ├── 04_Maps/RGP_two_active_area_grid_maps/
 │   └── 05_Spatial_Data/Whole_season_unique_active_grid.gpkg
 └── 06_Statistical_Analysis/
-    ├── 01_Tables/AFRI_Statistical_Results.xlsx
+    ├── 01_Tables/AFRI_Statistical_Results.xlsx  # Table 1 first; four other families + raw/QC
     ├── 02_Model_Results/Retained_Gaussian_LMMs.rds
     ├── 03_Figures/Diagnostics/          # newly owned model diagnostics only
     └── 06_Logs/

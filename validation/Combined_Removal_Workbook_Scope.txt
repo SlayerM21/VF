@@ -1,0 +1,8 @@
+Prior GitHub commit: d3b29e8ceace042f14d2654fd61624fae9163f8b
+Current Rmd SHA256: d127ebcff71e5af19ae999eb60af8d1225a142ea90cca92fffc8d5682fcdac13
+PASS: 199/206 R chunk bodies unchanged; exactly seven intended removal/reporting chunks changed.
+Changed chunks: hmm-export-analysis-tables, requested-revision-period-dataset, statistical-analysis-specification, statistical-response-models, publication-table-builders, publication-display-tables, publication-statistical-exports
+PASS: all seven removed combined-gas calculation/response identifiers absent from complete Rmd.
+PASS: standalone Table 1 workbook writer absent; final workbook owns its preserved presentation.
+PASS: both compact export-recovery scripts byte-identical to prior GitHub revision.
+Scope: static code comparison only; study model execution, maps, exports and full knit not run.

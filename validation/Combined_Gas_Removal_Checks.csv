@@ -1,0 +1,8 @@
+"Check","Status"
+"All 12 integrated and 7 statistics source chunks parse","PASS"
+"Only the intended productivity-computation chunk changed; all other integrated code expressions match","PASS"
+"Seven combined-gas arguments removed; all retained productivity calculations, joins and transformations are identical","PASS"
+"Period actual retained CH4/CO2/LWG values, invalid-denominator and missing-data behavior are identical on 18 synthetic rows","PASS"
+"Season actual retained CH4/CO2/LWG values, invalid-denominator and missing-data behavior are identical on 18 synthetic rows","PASS"
+"Registry contains 45 unique authoritative response specifications; exactly five combined-gas models removed","PASS"
+"No removed combined-gas identifiers remain in integrated or statistical code","PASS"

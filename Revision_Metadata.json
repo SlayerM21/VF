@@ -2,23 +2,22 @@
   "source_file": "AFRI_CHAPTER_2_Master_Code_Year_Random.Rmd",
   "source_sha256": "80d420e290269268841b0348a8c53a2c1292d96461e54e08763a8161681f11cf",
   "revised_file": "AFRI_CHAPTER_2_Optimized.Rmd",
-  "revised_sha256": "32f540b82056dc9dc9888e64967b0d588b5e50cdf8eb1371d5fb68310d2c932c",
+  "revised_sha256": "d127ebcff71e5af19ae999eb60af8d1225a142ea90cca92fffc8d5682fcdac13",
   "source_lines": 33602,
-  "revised_lines": 21842,
-  "audit_rows": 197,
-  "response_specifications": 50,
+  "revised_lines": 21638,
+  "audit_rows": 192,
+  "response_specifications": 45,
   "study_execution": "Not run: original HMM, BW, GreenFeed and GIS inputs unavailable",
   "r_chunks_parsed": 206,
   "requested_model_structure": "Random Year and physical Pasture only; period fixed effects TRT*SR+Period (Global GreenFeed TRT*SR+RotationPeriod); baseline TRT*SR; ANCOVA retains IBW",
   "global_greenfeed_name": "Global GreenFeed",
   "global_greenfeed_models": 2,
-  "complete_model_catalog_entries": 62,
+  "complete_model_catalog_entries": 57,
   "two_scale_output_directory": "05_Two_Scale_Analysis_maps",
   "period_interactions": "None: no TRT:Period, SR:Period or TRT:SR:Period terms; TRT:SR retained",
-  "current_formula_validation": "Passed: current additive-period static formula audit (66 formulas) and targeted synthetic model/reporting execution; actual study-data fits and full knit not run",
-  "current_statistical_synthetic_assertions": 59,
-  "current_model_formula_checks": 66,
-  "word_model_catalog": "AFRI_Variables_Models_and_Datasets.docx (62 entries; included in ZIP bundle)",
+  "current_formula_validation": "Passed: 61/61 static retained-formula checks, 206/206 R chunks parsed, seven combined-gas source/calculation checks and eight 31-sheet synthetic workbook checks; actual study models/exports/full knit not run",
+  "current_model_formula_checks": 61,
+  "word_model_catalog": "AFRI_Variables_Models_and_Datasets.docx (57 entries, ten tables and six descriptive groups; included in ZIP bundle; current integrity/content checks passed)",
   "two_scale_model_export_correction": {
     "scope": "Export filenames and writer diagnostics only; model identifiers, fits, data, additive formulas and inference preserved",
     "validation": "Passed: 8/8 targeted synthetic writer checks on Linux; all 206 R chunks/YAML/purl/extracted R parsed; actual Windows and study-data exports unverified",
@@ -37,7 +36,8 @@
       "maximum": 221
     },
     "unchanged_r_chunks": 204,
-    "changed_export_only_r_chunks": 2
+    "changed_export_only_r_chunks": 2,
+    "evidence_scope_revision": "Prior export-only correction; unchanged functions retained in current removal/routing revision"
   },
   "three_grid_map_export_correction": {
     "scope": "Final map export directories, PNG filenames, and writer diagnostics only; nine cached plot objects, full inventory identifiers, scientific calculations, dimensions and resolution unchanged",
@@ -98,6 +98,88 @@
       "validation/Three_Grid_Compact_Export_Validation.txt"
     ],
     "windows_runtime_validation": "Guard conditions simulated on Linux; actual Windows writes not executed",
-    "plot_preservation": "Cached scientific data, mappings, layers, labels, and export specifications preserved; normal ggplot rendering caches may be populated"
+    "plot_preservation": "Cached scientific data, mappings, layers, labels, and export specifications preserved; normal ggplot rendering caches may be populated",
+    "evidence_scope_revision": "Prior export-only correction; unchanged functions retained in current removal/routing revision"
+  },
+  "combined_gas_removal": {
+    "removed_response_specifications": 5,
+    "removed_responses": [
+      "GHG_g_per_active_ha_all_pasture",
+      "GHG_g_per_active_ha_inside_rgp",
+      "GHG_g_per_kg_LWG",
+      "GHG_g_per_active_ha_whole_season",
+      "GHG_g_per_kg_LWG_whole_season"
+    ],
+    "removed_precursor_calculations": [
+      "GHG_g_total_period_est",
+      "GHG_g_total_season_est"
+    ],
+    "separate_gases": "Separate CH4 and CO2 responses and models retained",
+    "existing_study_files": "No automatic deletion",
+    "validation": "Passed: seven source-expression and fabricated-period/season calculation checks; no study-model fitting or study exports",
+    "synthetic_check_groups_passed": 7,
+    "synthetic_period_rows": 18,
+    "synthetic_season_rows": 18,
+    "evidence": [
+      "validation/Combined_Gas_Removal_Checks.csv",
+      "validation/Combined_Gas_Removal_Validation.txt"
+    ]
+  },
+  "statistical_workbook_layout": {
+    "first_worksheet": "Table_1_Grazing_Behaviors",
+    "publication_worksheets": [
+      "Table_1_Grazing_Behaviors",
+      "Table2",
+      "WholeSeason_Additional",
+      "Pasture_RGP",
+      "Animal_RGP"
+    ],
+    "removed_worksheet": "ShrunkBW_Season",
+    "merged_into_Table2": [
+      "Whole_Season_CH4_g_day",
+      "Whole_Season_CO2_g_day",
+      "Whole_Season_Smooth_ADG_kg_day"
+    ],
+    "moved_to_WholeSeason_Additional": [
+      "CH4_g_per_active_ha_whole_season",
+      "CO2_g_per_active_ha_whole_season",
+      "active_ha_whole_season",
+      "LWG_kg_per_active_ha_whole_season"
+    ],
+    "table1_export": "One designated workbook owner; standalone Table 1 writer removed",
+    "source_analysis_keys": "Preserved; worksheet placement is reporting metadata",
+    "validation": "Passed: eight actual-source synthetic check groups; current workbook saved/reopened with 31 nonempty sheets; no study-data workbook",
+    "synthetic_check_groups_passed": 8,
+    "synthetic_worksheet_count": 31,
+    "table1_full_tests": "Table1_Reference_ANOVA preserves every original cached Type III ANOVA row/column; behavior tests not repeated in Fixed_Effect_Omnibus",
+    "prior_evidence_directory": "validation/Historical_Pre_Removal_Workbook",
+    "evidence": [
+      "validation/Workbook_Reorganization_Checks.csv",
+      "validation/Workbook_Reorganization_Validation.txt"
+    ],
+    "stale_result_filter": "Reporting copies exclude response keys absent from the current registry; original environment objects are unchanged"
+  },
+  "prior_additive_statistical_synthetic_assertions": 59,
+  "word_document_sha256": "6fca7a50101ac2bef634c5132ac662ae9a06e498c9dd7b0b1f0580789fe4bea2",
+  "word_document_validation": {
+    "bytes": 29051,
+    "model_entries": 57,
+    "tables": 10,
+    "descriptive_rows": 6,
+    "status": "Passed integrity/reopening, response multiplicity and preserved dataset caveats, requested additive formulas, combined-gas removal and worksheet notes, pending Q, hyperlinks and Unicode; visual pagination not rendered",
+    "evidence": "validation/Word_Removal_Workbook_Validation.txt"
+  },
+  "combined_removal_workbook_scope": {
+    "unchanged_chunks": 199,
+    "total_chunks": 206,
+    "intentionally_changed_chunks": 7,
+    "removed_calculation_response_identifiers_absent": 7,
+    "compact_recovery_scripts": "Both byte-identical to preceding published revision",
+    "evidence": [
+      "validation/Combined_Removal_Workbook_Chunk_Scope.csv",
+      "validation/Combined_Removal_Workbook_Scope.txt"
+    ],
+    "prior_commit": "d3b29e8ceace042f14d2654fd61624fae9163f8b",
+    "execution_scope": "Static comparison; no study models/exports/full knit"
   }
 }

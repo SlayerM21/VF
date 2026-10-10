@@ -1,6 +1,6 @@
 # AFRI R Markdown revision report
 
-The delivery contains one complete document, `AFRI_CHAPTER_2_Optimized.Rmd`, with all runtime helpers embedded. It replaces the uploaded 33,602-line document with a 21,818-line workflow and retains 50 response specifications in the final statistical reporting layer. A response specification can reuse an earlier model; it does not imply another fitted model. No scientific results were invented, and the uploaded file was left unchanged.
+The delivery contains one complete document, `AFRI_CHAPTER_2_Optimized.Rmd`, with all runtime helpers embedded. It replaces the uploaded 33,602-line document with a 21,842-line workflow and retains 50 response specifications in the final statistical reporting layer. A response specification can reuse an earlier model; it does not imply another fitted model. No scientific results were invented, and the uploaded file was left unchanged.
 
 The latest revision applies the requested additive-period specifications and passed actual R parsing, static formula audits, and targeted synthetic execution of the current models and reporting functions. Records from the preceding interaction-model revision are identified separately as historical evidence. **A full knit, study-data model execution, and study export generation remain unverified because the original HMM, BW, GreenFeed, and GIS inputs were not supplied.** The document deliberately reports unavailable models or inference instead of silently switching families or modifying the requested formulas after a singular fit.
 
@@ -10,9 +10,19 @@ The protected setup attaches `multcomp` after `dplyr`; `multcomp` attaches MASS,
 
 The package-order conflict and the previous errors were reproduced in R. With MASS attached, the corrected schedule retained exactly the same 15 rows, dates, rotation assignments and factors, and the corrected reporting function retained all 30 fabricated EMM/count/P-value/letter rows. Nine targeted checks passed, including the actual setup assignment and its ability to repair the previous interactive calls. All 206 R chunks, YAML, knitr purl and extracted R parsed again. All four protected model arguments and the 33/46 unchanged-chunk count were independently confirmed. See `validation/Select_Masking_Fix_Validation.txt`. No study model, study export or full knit was executed for this correction.
 
+## Final three-grid map path correction
+
+The `final-three-grid-map-package` error was raised by the previous writer's conservative 240-character guard. The supplied destination also reaches the usual legacy Windows path limit, so simply removing the guard would not resolve the long destination. The revised exporter keeps the requested `01_Grazing_Behavior_Spatial_Aera/04_Maps/Three_Grid_Metrics` root and shortens only its internal metric directories to `01_LWG`, `02_CH4`, and `03_CO2`. Compact PNG suffixes `all_rgp`, `inside_rgp`, and `season` replace repeated long grid labels; complete metric and grid identifiers remain in the single map inventory.
+
+The writer checks the complete absolute destination and temporary-render paths against the usual 260-character Windows limit, verifies the parent directory, and includes the failed path in filesystem errors. It renders to a temporary PNG before publishing the nonempty result and retains the optional ragg-to-standard-PNG fallback. It reuses the same nine plot objects and preserves 16 × 10 inch period maps, 12 × 8 inch seasonal maps, and 300 dpi. Existing analysis outputs are not automatically deleted; the compact destinations replace the long filenames for future requested exports.
+
+`AFRI_Three_Grid_Map_Export_Fix.R` supplies the same export-only repair for an active R session. It uses `three_grid_metric_plot_objects` already in memory and does not rebuild maps, reprocess data, or refit models. This correction changes only `final-three-grid-map-package`; the other 205 of 206 R chunks are identical to the preceding revision. All 206 chunks, YAML, knitr purl and extracted R parsed successfully. The 62-entry model/dataset catalog, 50-row inventory and Word document are byte-identical, and the compact destinations calculated from the supplied Windows project path are 224–231 characters. Twelve targeted synthetic export checks passed on Linux. Actual Windows writes and study map exports remain unverified because the validation environment is Linux and the original inputs were not supplied. Static scope evidence is in `validation/Three_Grid_Map_Export_Scope.txt`.
+
+The actual revised exporter produced nine synthetic PNGs and one complete inventory: period PNGs were 4,800 × 3,000 pixels and seasonal PNGs 3,600 × 2,400 pixels at 300 dpi. Cached scientific plot data, mappings, layers, labels and export specifications were preserved. Checks covered disabled exports, blocked parent-directory errors, preservation of an existing PNG during partial-render failure, temporary-file cleanup, absolute-path checks including relative destinations in a long working directory, recovery/source parity, and repeat recovery with identical output checksums. The supplied Windows destinations calculate to 224–231 characters and temporary paths to 225–226 characters. Windows guards were simulated on Linux; successful Windows writes are not claimed. Evidence is in `validation/Three_Grid_Compact_Export_Checks.csv` and `validation/Three_Grid_Compact_Export_Validation.txt`.
+
 ## Two-scale model export connection correction
 
-The export correction changes two of the 206 R chunks; the other 204 are identical to the preceding GitHub revision. The affected unique-model fitting, inference and diagnostic-calculation block is identical. All 206 chunks, YAML, knitr purl and extracted R parsed successfully again, and all 62 catalog entries/66 formula fields are unchanged.
+For the preceding two-scale export correction, two of the 206 R chunks changed; the other 204 were identical to its preceding GitHub revision. The affected unique-model fitting, inference and diagnostic-calculation block is identical. All 206 chunks, YAML, knitr purl and extracted R parsed successfully again, and all 62 catalog entries/66 formula fields are unchanged.
 
 The `unique-percent-use-and-endpoint-sensitivity-models` error `Error in file(con, "w") : cannot open the connection` occurs while opening an output file, rather than identifying a model-fitting failure. The former summary and diagnostic filenames embedded each complete model identifier; the previously supplied Windows project path made some destinations longer than the legacy Windows path limit. A missing or unwritable destination can produce the same error, so the corrected writers identify the exact failed destination instead of assuming one cause.
 
@@ -45,6 +55,7 @@ Removing management-by-period interactions changes the fixed-effect assumptions 
 
 - `AFRI_CHAPTER_2_Optimized.Rmd`: complete analysis, usable as a single RStudio document.
 - `AFRI_Two_Scale_Export_Fix.R`: export-only recovery for existing unique two-scale productivity results in an active R session; respects `export_results`.
+- `AFRI_Three_Grid_Map_Export_Fix.R`: export-only recovery for the nine already-built metric maps in an active R session; respects `export_results`.
 - `Analysis_Export_Audit.csv`: 197 detailed rows covering derived datasets, QC records, retained models, reporting views, figures, spatial outputs, and export ownership.
 - `Response_Model_Inventory.csv`: all 50 final reporting specifications, their data sources, scale, and observation unit.
 - `Complete_Response_Model_List.csv` and `.md`: all 62 reporting/source/conditional entries, with exact formulas, model-fitting/reporting datasets and model-reuse conditions.
@@ -127,9 +138,9 @@ Chapter_2_Results/
 │   │   ├── 06_Final_Separate/
 │   │   ├── 07_Active_Area/
 │   │   └── Three_Grid_Metrics/
-│   │       ├── 01_Body_Weight_LWG_Three_Grids/  # three PNGs
-│   │       ├── 02_CH4_Three_Grids/             # three PNGs
-│   │       └── 03_CO2_Three_Grids/             # three PNGs
+│   │       ├── 01_LWG/                       # three compact PNGs
+│   │       ├── 02_CH4/                       # three compact PNGs
+│   │       └── 03_CO2/                       # three compact PNGs
 │   ├── 05_Spatial_Data/                 # HMM/base/grid GeoPackages
 │   └── Integrated_Analysis/01_Tables/   # eleven unique final dataset/QC CSVs
 ├── 02_Grazing_BW_AFRI/
@@ -176,7 +187,7 @@ The full 197-row CSV gives each source object and destination. `Preserved`, `Con
 | Integrated 9.2–9.5 | Final animal/pasture datasets and unique map/availability QC | `shrunk_bw_*`, `period_level_grazing_productivity`, `whole_season_grazing_productivity` | spatial `Integrated_Analysis/01_Tables` | Corrected |
 | Statistical 9.7–9.12 | 50 response views, authoritative fits, diagnostics and design audit | `analysis_fits` and retained earlier models | owned archive/diagnostics and statistical workbook | Consolidated / Corrected |
 | Publication 9.12–9.13 | Five remaining manuscript table families and numerical/QC sheets | `publication_table_objects`, retained inference objects | statistical workbook | Consolidated |
-| Final maps | Nine metric maps and single inventory | `three_grid_metric_plot_objects` | spatial `04_Maps/Three_Grid_Metrics` and `01_Tables` | Consolidated |
+| Final maps | Nine metric maps and single inventory | `three_grid_metric_plot_objects` | spatial `04_Maps/Three_Grid_Metrics/{01_LWG,02_CH4,03_CO2}` and `01_Tables` | Corrected / Consolidated |
 
 ## Validation report
 
@@ -200,7 +211,8 @@ The full 197-row CSV gives each source object and destination. `Preserved`, `Con
 | Two-scale models, counts and endpoints | Five current additive-model synthetic check groups passed | Qualified Q fits use additive Period with test-only thresholds; fitted counts after missingness, pending Q status when unset, additive P models, unchanged S/C, equivalent gain consolidation and distinct endpoint/window sensitivities checked. Actual Q analyses remain pending the user's sampling rule. |
 | Publication cross-schema execution | Six current additive-model synthetic check groups passed | All five table families and ten fitted n values verified; one workbook reopened with 30 nonempty sheets; removed period-interaction columns absent; disabled exports, Table 1 exclusion, missing SE/P and typed empty results preserved. |
 | Word model/dataset catalog | Current document checks passed | Word file contains all 62 model entries, ten tables and six descriptive measure groups, with current additive-period formulas and dataset metadata. Independent DOCX integrity, formula, row-count and dataset checks passed; visual pagination was not rendered. These are code specifications, not study results. |
-| Nine-map writer | Historical synthetic checks passed | Nine fabricated plots previously produced nine PNGs and one inventory with disabled/failed write handling. These are not research maps. |
+| Final three-grid compact paths and writer | 12/12 current targeted synthetic checks passed | Nine PNGs and one complete inventory written on Linux, with exact 300 dpi pixel dimensions. Scientific plot content preserved; disabled exports, partial-render preservation/cleanup, blocked parents, absolute destination/temporary guards, recovery/source parity and repeated recovery checked. Supplied Windows destinations calculate to 224–231 characters; temporary paths 225–226. Actual Windows/study exports remain unverified. |
+| Prior nine-map writer | Historical synthetic checks passed | Nine fabricated plots previously produced nine PNGs and one inventory with disabled/failed write handling. These are not research maps. |
 | Study statistical model execution | **Not run** | Original source datasets absent. No actual n/EMM/SE/P/CLD values validated. |
 | Study export creation / GIS writes | **Not run** | Original inputs absent; sf unavailable in validation runtime. Actual map appearance, geometry/equality assertions and GeoPackage writes require project inputs. |
 | Full document knit | **Not run** | Source datasets absent; full application dependencies were not available. |
@@ -246,5 +258,13 @@ source("AFRI_Two_Scale_Export_Fix.R")
 ```
 
 This script requires the already-computed productivity models, inference and diagnostic objects and only repeats their designated export operations. It does not repeat statistical analyses. If a failure still occurs, its message now identifies the exact destination, path length and filesystem error. A shorter project path or `params$output_dir` is necessary if the resulting Windows path still reaches the usual limit. Changing `params$output_dir` also requires rerunning the setup that establishes `master_output_root`; moving existing study files is not automatic.
+
+For the final three-grid PNG path error, download `AFRI_Three_Grid_Map_Export_Fix.R` beside the revised Rmd and run it in the existing session:
+
+```r
+source("AFRI_Three_Grid_Map_Export_Fix.R")
+```
+
+Keep the current session open: the script exports the cached `three_grid_metric_plot_objects` and one inventory, without repeating map construction or analyses. It requires the established `master_output_root` and honors `export_results`. If a complete absolute destination or temporary path still reaches the Windows limit, choose a shorter output root and rerun the setup that establishes it before exporting; the repair does not move or delete existing outputs.
 
 The two optional **animal-period two-scale** GreenFeed thresholds remain `null`. No prespecified rule was supplied. Threshold-dependent qualifying gas models are explicitly pending. This does **not** add a threshold to the Global pasture-period analysis; its existing valid-visit rules and aggregation remain. The separate Dressler whole-season 40-visit rule is preserved.

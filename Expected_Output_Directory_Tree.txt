@@ -12,9 +12,9 @@ Chapter_2_Results/
 │   │   ├── 06_Final_Separate/
 │   │   ├── 07_Active_Area/
 │   │   └── Three_Grid_Metrics/
-│   │       ├── 01_Body_Weight_LWG_Three_Grids/  # three PNGs
-│   │       ├── 02_CH4_Three_Grids/             # three PNGs
-│   │       └── 03_CO2_Three_Grids/             # three PNGs
+│   │       ├── 01_LWG/                       # three compact PNGs
+│   │       ├── 02_CH4/                       # three compact PNGs
+│   │       └── 03_CO2/                       # three compact PNGs
 │   ├── 05_Spatial_Data/                 # HMM/base/grid GeoPackages
 │   └── Integrated_Analysis/01_Tables/   # eleven unique final dataset/QC CSVs
 ├── 02_Grazing_BW_AFRI/

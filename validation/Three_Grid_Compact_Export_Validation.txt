@@ -1,0 +1,22 @@
+Actual delivered chunk writes nine cached maps with full grid identifiers: PASS
+PNG signatures and pixel dimensions retain original sizes and 300 DPI: PASS
+ggplot3.5.1 rendering populated expected layer cache fields: computed_geom_params, computed_mapping, computed_stat_params. Data, mappings, labels, fixed aesthetics, layer specifications and scales remain unchanged.
+Exports retain all cached scientific plot specifications and original objects: PASS
+Final map objects are available; export_results is FALSE so files were not written.
+Disabled chunk and direct writer create no directories or files: PASS
+Partial renderer failure preserves prior destination and removes temporary PNG: PASS
+Blocked parent reports exact destination and preserves blocking file: PASS
+Original failing path: 260 characters; compact destinations: 224-231; generated temporary paths: 225-226 characters. Windows filesystem not executed.
+Supplied Windows root budgets all nine compact destinations and temporary names: PASS
+Simulated Windows guard rejected a 258-character destination because its generated temporary path exceeded the limit.
+Actual guard catches long absolute and relative paths with simulated Windows flag: PASS
+Recovery script matches delivered export code and contains no import or model calls: PASS
+Recovery can be sourced twice without new filenames or changing cached results: PASS
+Final map objects are available; export_results is FALSE so files were not written.
+Disabled recovery writes no outputs and preserves cached plots: PASS
+Recovery reports missing cached analysis objects before writing: PASS
+Passed: 12/12
+Scope: actual delivered export code and recovery executed with nine synthetic cached ggplots on Linux.
+Plot preservation checks compare scientific specifications and original object identity; normal renderer ggproto computed_* caches are allowed.
+Windows path guard exercised with a simulated Windows flag; actual Windows writes, study maps, GIS operations and statistical models were not executed.
+Fixture: /tmp/Rtmpjxdgs1/afri_three_grid_exports_135e01e61af97

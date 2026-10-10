@@ -1,6 +1,6 @@
 Word document of current additive-period model inventory
 
-Rmd SHA256: 271e442f598c6db41c2d506ba65a6334f6fc7dabbf26e5a5093b9ab69c360fe0
+Rmd SHA256: 32f540b82056dc9dc9888e64967b0d588b5e50cdf8eb1371d5fb68310d2c932c
 DOCX SHA256: 5a645fa8de861b4f7f37af6e395cf7c4376d80082971711722851bda4e693aff
 
 PASS: DOCX ZIP integrity and reopening with python-docx.
@@ -11,3 +11,5 @@ PASS: current formula legend, links, Unicode and study-execution limitation reta
 Visual pagination not rendered. Study statistical models and exports not executed.
 
 Export-only correction: catalog formulas/datasets and DOCX unchanged. Current DOCX integrity, 10 tables/62 entries and absence of old three-way formulas rechecked.
+
+Final-map correction: Word and both model catalogs remain byte-identical; only the map export chunk changed.

@@ -1,0 +1,12 @@
+Final three-grid compact map export scope
+
+Previous revision: cf8a8ba
+Previous Rmd SHA256: 271e442f598c6db41c2d506ba65a6334f6fc7dabbf26e5a5093b9ab69c360fe0
+Current Rmd SHA256: 32f540b82056dc9dc9888e64967b0d588b5e50cdf8eb1371d5fb68310d2c932c
+
+PASS: 205/206 R chunk bodies unchanged. Only final-three-grid-map-package changed.
+PASS: cached plot construction, all inferential models, input transformations, protected reference and two-scale productivity recovery unchanged.
+PASS: 62-entry model/dataset CSV, 50-entry response inventory and Word catalog byte-identical to preceding revision.
+PASS: required maps remain under 01_Grazing_Behavior_Spatial_Aera/04_Maps/Three_Grid_Metrics; only metric subfolders and PNG basenames shorten.
+PASS: all nine full Metric/Grid inventory keys, dimensions16x10period/12x8season and300dpi retained.
+Actual Windows/study maps, model fits, GIS exports and full knit: NOT RUN.

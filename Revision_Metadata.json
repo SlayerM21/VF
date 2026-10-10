@@ -2,9 +2,9 @@
   "source_file": "AFRI_CHAPTER_2_Master_Code_Year_Random.Rmd",
   "source_sha256": "80d420e290269268841b0348a8c53a2c1292d96461e54e08763a8161681f11cf",
   "revised_file": "AFRI_CHAPTER_2_Optimized.Rmd",
-  "revised_sha256": "271e442f598c6db41c2d506ba65a6334f6fc7dabbf26e5a5093b9ab69c360fe0",
+  "revised_sha256": "32f540b82056dc9dc9888e64967b0d588b5e50cdf8eb1371d5fb68310d2c932c",
   "source_lines": 33602,
-  "revised_lines": 21818,
+  "revised_lines": 21842,
   "audit_rows": 197,
   "response_specifications": 50,
   "study_execution": "Not run: original HMM, BW, GreenFeed and GIS inputs unavailable",
@@ -38,5 +38,66 @@
     },
     "unchanged_r_chunks": 204,
     "changed_export_only_r_chunks": 2
+  },
+  "three_grid_map_export_correction": {
+    "scope": "Final map export directories, PNG filenames, and writer diagnostics only; nine cached plot objects, full inventory identifiers, scientific calculations, dimensions and resolution unchanged",
+    "validation": "Passed: 12/12 current targeted synthetic map export checks on Linux and all 206 R chunks/YAML/purl/extracted R parsed; actual Windows and study-data exports unverified",
+    "recovery_script": "AFRI_Three_Grid_Map_Export_Fix.R",
+    "recovery": "Export-only script saves current-session map objects without rebuilding maps or refitting models",
+    "output_root": "01_Grazing_Behavior_Spatial_Aera/04_Maps/Three_Grid_Metrics",
+    "metric_directories": {
+      "BW_LWG": "01_LWG",
+      "CH4": "02_CH4",
+      "CO2": "03_CO2"
+    },
+    "grid_filename_tags": {
+      "ALL_PASTURE_RGP": "all_rgp",
+      "INSIDE_RGP": "inside_rgp",
+      "WHOLE_SEASON": "season"
+    },
+    "windows_absolute_path_limit": 260,
+    "expected_png_count": 9,
+    "period_map_inches": [
+      16,
+      10
+    ],
+    "season_map_inches": [
+      12,
+      8
+    ],
+    "dpi": 300,
+    "supplied_windows_path_calculated_characters": {
+      "minimum": 224,
+      "maximum": 231
+    },
+    "unchanged_r_chunks": 205,
+    "changed_export_only_r_chunks": 1,
+    "unchanged_model_catalog_entries": 62,
+    "unchanged_response_inventory_rows": 50,
+    "word_document_unchanged": true,
+    "scope_evidence": "validation/Three_Grid_Map_Export_Scope.txt",
+    "synthetic_checks_passed": 12,
+    "synthetic_output_files": {
+      "map_pngs": 9,
+      "inventory_csv": 1
+    },
+    "synthetic_period_png_pixels": [
+      4800,
+      3000
+    ],
+    "synthetic_season_png_pixels": [
+      3600,
+      2400
+    ],
+    "supplied_windows_temporary_path_calculated_characters": {
+      "minimum": 225,
+      "maximum": 226
+    },
+    "runtime_evidence": [
+      "validation/Three_Grid_Compact_Export_Checks.csv",
+      "validation/Three_Grid_Compact_Export_Validation.txt"
+    ],
+    "windows_runtime_validation": "Guard conditions simulated on Linux; actual Windows writes not executed",
+    "plot_preservation": "Cached scientific data, mappings, layers, labels, and export specifications preserved; normal ggplot rendering caches may be populated"
   }
 }

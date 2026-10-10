@@ -21701,7 +21701,9 @@ professional_export_qc
 The nine final BW/LWG, CH4, and CO2 maps reuse the plot objects and build
 checks in Section 9.4.1. Each map is written once to its designated location.
 The independent period all-pasture, period inside-RGP, and pooled whole-season
-denominators remain distinct. No files or old output directories are deleted.
+denominators remain distinct. Compact filenames and metric subfolders avoid
+long Windows paths; the inventory retains the full metric and grid identifiers.
+No files or old output directories are deleted.
 
 ```{r final-three-grid-map-package, message=FALSE, warning=FALSE}
 required_metrics <- c("BW_LWG", "CH4", "CO2")
@@ -21717,45 +21719,63 @@ for (metric in required_metrics) {
 final_map_root <- file.path(master_output_root, "01_Grazing_Behavior_Spatial_Aera",
                            "04_Maps", "Three_Grid_Metrics")
 final_map_dirs <- list(
-  BW_LWG = file.path(final_map_root, "01_Body_Weight_LWG_Three_Grids"),
-  CH4 = file.path(final_map_root, "02_CH4_Three_Grids"),
-  CO2 = file.path(final_map_root, "03_CO2_Three_Grids")
+  BW_LWG = file.path(final_map_root, "01_LWG"),
+  CH4 = file.path(final_map_root, "02_CH4"),
+  CO2 = file.path(final_map_root, "03_CO2")
 )
 # A temporary output prevents a failed device from destroying an existing map.
 # Publish a successfully written PNG; do not unlink previous analysis outputs.
 save_map_png <- function(plot_object, filename, width, height, dpi = 300) {
-  dir.create(dirname(filename), recursive = TRUE, showWarnings = FALSE)
-  if (.Platform$OS.type == "windows" && nchar(filename) >= 240L)
-    stop("PNG path exceeds the Windows-safe length: ", filename,
-         ". Choose a shorter output root in params.")
-  temporary_png <- tempfile("afri_map_", tmpdir = dirname(filename), fileext = ".png")
-  on.exit(if (file.exists(temporary_png)) unlink(temporary_png), add = TRUE)
-  device <- if (requireNamespace("ragg", quietly = TRUE)) ragg::agg_png else "png"
-  export_error <- NULL
-  tryCatch(ggplot2::ggsave(temporary_png, plot = plot_object, device = device,
-    width = width, height = height, units = "in", dpi = dpi,
-    bg = "white", limitsize = FALSE),
-    error = function(e) {export_error <<- conditionMessage(e)})
-  if (!is.null(export_error) && !is.character(device)) {
-    message("ragg failed for ", basename(filename), "; trying the standard PNG device: ", export_error)
-    ggplot2::ggsave(temporary_png, plot = plot_object, device = "png",
+  if (!isTRUE(export_results)) return(invisible(NULL))
+  destination <- filename
+  tryCatch({
+    directory <- dirname(destination)
+    dir.create(directory, recursive = TRUE, showWarnings = FALSE)
+    if (!dir.exists(directory)) stop("Could not create PNG output directory: ", directory)
+    directory <- normalizePath(directory, winslash = "/", mustWork = TRUE)
+    destination <- file.path(directory, basename(filename))
+    temporary_png <- tempfile("m_", tmpdir = directory, fileext = ".png")
+    on.exit(if (file.exists(temporary_png)) unlink(temporary_png), add = TRUE)
+    if (.Platform$OS.type == "windows" &&
+        max(nchar(destination), nchar(temporary_png)) >= 260L) {
+      stop("Destination or temporary PNG reaches the usual Windows 260-character limit (temporary path: ",
+        nchar(temporary_png), " characters). Use a shorter project path or params$output_dir.")
+    }
+    device <- if (requireNamespace("ragg", quietly = TRUE)) ragg::agg_png else "png"
+    export_error <- NULL
+    tryCatch(ggplot2::ggsave(temporary_png, plot = plot_object, device = device,
       width = width, height = height, units = "in", dpi = dpi,
-      bg = "white", limitsize = FALSE)
-  } else if (!is.null(export_error)) stop(export_error)
-  bytes <- if (file.exists(temporary_png)) as.numeric(file.info(temporary_png)$size) else 0
-  if (!is.finite(bytes) || bytes <= 0)
-    stop("Map device did not create a nonempty PNG: ", filename)
-  if (!file.copy(temporary_png, filename, overwrite = TRUE))
-    stop("Could not publish completed map: ", filename)
-  invisible(filename)
+      bg = "white", limitsize = FALSE),
+      error = function(e) {export_error <<- conditionMessage(e)})
+    if (!is.null(export_error) && !is.character(device)) {
+      message("ragg failed for ", basename(destination), "; trying the standard PNG device: ", export_error)
+      ggplot2::ggsave(temporary_png, plot = plot_object, device = "png",
+        width = width, height = height, units = "in", dpi = dpi,
+        bg = "white", limitsize = FALSE)
+    } else if (!is.null(export_error)) stop(export_error)
+    bytes <- if (file.exists(temporary_png)) as.numeric(file.info(temporary_png)$size) else 0
+    if (!is.finite(bytes) || bytes <= 0) stop("Map device did not create a nonempty PNG.")
+    signature <- readBin(temporary_png, what = "raw", n = 8L)
+    if (!identical(signature, as.raw(c(137, 80, 78, 71, 13, 10, 26, 10))))
+      stop("Map device did not create a PNG file.")
+    if (!file.copy(temporary_png, destination, overwrite = TRUE))
+      stop("Could not publish completed map.")
+  }, error = function(e) {
+    stop("Final map export failed: ", destination, " (", nchar(destination),
+      " characters). ", conditionMessage(e), call. = FALSE)
+  })
+  invisible(destination)
 }
+map_grid_file_tags <- c(ALL_PASTURE_RGP = "all_rgp", INSIDE_RGP = "inside_rgp",
+                       WHOLE_SEASON = "season")
+
 map_export_inventory <- list()
 if (isTRUE(export_results)) {
   for (metric in required_metrics) {
     for (i in seq_along(required_grids)) {
       grid <- required_grids[i]
       filename <- file.path(final_map_dirs[[metric]],
-        sprintf("%s_%02d_%s.png", metric, i, grid))
+        sprintf("%s_%02d_%s.png", metric, i, map_grid_file_tags[[grid]]))
       seasonal <- identical(grid, "WHOLE_SEASON")
       saved_file <- save_map_png(three_grid_metric_plot_objects[[metric]][[grid]],
         filename, width = if (seasonal) 12 else 16,
@@ -21774,8 +21794,12 @@ if (isTRUE(export_results)) {
     stop("The final inventory must contain nine successfully written PNG maps.")
   inventory_dir <- file.path(master_output_root, "01_Grazing_Behavior_Spatial_Aera", "01_Tables")
   dir.create(inventory_dir, recursive = TRUE, showWarnings = FALSE)
-  readr::write_csv(map_export_inventory,
-    file.path(inventory_dir, "Three_grid_BW_CH4_CO2_map_inventory.csv"))
+  inventory_file <- file.path(inventory_dir, "Three_grid_BW_CH4_CO2_map_inventory.csv")
+  tryCatch({
+    if (!dir.exists(inventory_dir)) stop("Inventory directory could not be created.")
+    readr::write_csv(map_export_inventory, inventory_file)
+  }, error = function(e) stop("Final map inventory export failed: ", inventory_file,
+    ". ", conditionMessage(e), call. = FALSE))
   knitr::kable(map_export_inventory, caption = "Final BW/LWG, CH4, and CO2 three-grid map exports")
 } else {
   map_export_inventory <- tibble::tibble(
